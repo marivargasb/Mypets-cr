@@ -1,0 +1,101 @@
+<?php
+
+  class usuarios
+{
+
+    private $id_usuarios;
+    private $nombre;
+    private $apellido;
+    private $apellido2;
+    private $correo;
+    private $contrasena;
+    private $nacimiento;
+    private $foto;
+    private $estad;
+    private $tipo;
+
+
+
+public function getId_usuarios(){
+		return $this->id_usuarios;
+	}
+
+	public function setId_usuarios($id_usuarios){
+		$this->id_usuarios = $id_usuarios;
+	}
+
+	public function getNombre(){
+		return $this->nombre;
+	}
+
+	public function setNombre($nombre){
+		$this->nombre = $nombre;
+	}
+
+	public function getApellido(){
+		return $this->apellido;
+	}
+
+	public function setApellido($apellido){
+		$this->apellido = $apellido;
+	}
+
+	public function getApellido2(){
+		return $this->apellido2;
+	}
+
+	public function setApellido2($apellido2){
+		$this->apellido2 = $apellido2;
+	}
+
+	public function getCorreo(){
+		return $this->correo;
+	}
+
+	public function setCorreo($correo){
+		$this->correo = $correo;
+	}
+
+	public function getContrasena(){
+		return $this->contrasena;
+	}
+
+	public function setContrasena($contrasena){
+		$this->contrasena = $contrasena;
+	}
+
+	public function getNacimiento(){
+		return $this->nacimiento;
+	}
+
+	public function setNacimiento($nacimiento){
+		$this->nacimiento = $nacimiento;
+	}
+
+	public function getFoto(){
+		return $this->foto;
+	}
+
+	public function setFoto($foto){
+		$this->foto = $foto;
+	}
+
+	public function getEstad(){
+		return $this->estad;
+	}
+
+	public function setEstad($estad){
+		$this->estad = $estad;
+	}
+
+	public function getTipo(){
+		return $this->tipo;
+	}
+
+	public function setTipo($tipo){
+		$this->tipo = $tipo;
+	}
+
+
+  
+}
