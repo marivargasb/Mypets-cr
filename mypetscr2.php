@@ -27,6 +27,13 @@
   <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="plugins/iCheck/all.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+   
+    <link rel="stylesheet" href="css/estilos-footer.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,90 +44,97 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-
-  <header class="main-header">
-
-
-
-  <?php
-  
-  include 'C:\xampp\htdocs\Mypetscr\php\cn.php';
-  
-  session_start();
-if(isset($_SESSION['id'])){
-  
-    $id = $_SESSION['id'];
-
-   
-  
-  }else{
-  
-    header("Location: registro.php");
-  
-  }
-
-  $cate = $_GET['categoria'];
-  $pro= $_GET['provincia'];
-  $y = "AND";
-
-  
-
-if( $cate === '1') {
-
-    $y = "";
-    $cate = "";
+<body class="layout-boxed skin-blue sidebar-mini  ">
+    <div class="wrapper">
     
+      <header class="main-header  ">
 
-    if($pro === '1' ){
-        
-                $y = "";
-                $pro= "";
-               
-            }
-  }else{
-  
-
-    if($pro === '1' ){
-
+      <?php
+      
+      include 'C:\xampp\htdocs\Mypetscr\php\cn.php';
+      
+      session_start();
+    if(isset($_SESSION['id'])){
+      
+        $id = $_SESSION['id'];
+    
+       
+      
+      }else{
+      
+        header("Location: registro.php");
+      
+      }
+    
+      $cate = $_GET['categoria'];
+      $pro= $_GET['provincia'];
+      $y = "AND";
+    
+      
+    
+    if( $cate === '1') {
+    
         $y = "";
-        $pro= "";
+        $cate = "";
         
-    }
     
-  }
+        if($pro === '1' ){
+            
+                    $y = "";
+                    $pro= "";
+                   
+                }
+      }else{
+      
+    
+        if($pro === '1' ){
+    
+            $y = "";
+            $pro= "";
+            
+        }
+        
+      }
+    
+         
+       
+    
+        //  echo "WHERE " .$cate .$y .$pro;
+    
+      
+      $query = "SELECT * FROM usuarios WHERE id_usuarios = '$id' ";
+      $resultado = $conexion->query($query);
+      if($row = $resultado-> fetch_assoc()){
+      ?>
+      
+    
+       
+        <!-- Logo -->
+        <a href="index2.html" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>C</b>R</span>
+          <!-- logo for regular state and mobile devices -->
+         
+          <span class="logo-lg"><b>Mypets</b> <label class="label label-danger" >CR</label></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+          <!-- Sidebar toggle button para eliminar el boton
+          <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+        
+        -->
+        
 
-     
-   
-
-    //  echo "WHERE " .$cate .$y .$pro;
-
-  
-  $query = "SELECT * FROM usuarios WHERE id_usuarios = '$id' ";
-  $resultado = $conexion->query($query);
-  if($row = $resultado-> fetch_assoc()){
-  ?>
-  
-
-
-    <!-- Logo -->
-    <a href="mypetscr.php?id= <?php echo $row['id_usuarios'] ?>" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>C</b>R</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Mypets</b>CR</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
-
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
+          <div class="navbar-custom-menu ">
+            <ul class="nav navbar-nav">
+              
+    
+    
+    
           
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
@@ -136,7 +150,7 @@ if( $cate === '1') {
                     <li><!-- start message -->
                       <a href="#">
                         <div class="pull-left">
-                          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                          <img src="https://static1.squarespace.com/static/56d3a5a486db43f4f777b2f6/t/56d3d82e8259b53968383d8e/1456724022495/27ef868543abf9c4e16439c1aeb8f0bd.jpg" class="img-circle" alt="User Image">
                         </div>
                         <h4>
                           Andrea
@@ -149,7 +163,7 @@ if( $cate === '1') {
                     <li>
                       <a href="#">
                         <div class="pull-left">
-                          <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                          <img src="https://static1.squarespace.com/static/56d3a5a486db43f4f777b2f6/t/56d3d82e8259b53968383d8e/1456724022495/27ef868543abf9c4e16439c1aeb8f0bd.jpg" class="img-circle" alt="User Image">
                         </div>
                         <h4>
                           Marta
@@ -176,35 +190,38 @@ if( $cate === '1') {
                 <li>
                   <!-- inner menu: contains the actual data -->
                   <ul class="menu">
-                   
-                 <?php
+               
                  
+                  <?php
+                  
+                  
+                  $id_usuario = $row['id_usuarios'];
+                  $query = "SELECT  lg.id_lugar , lg.nombre, lg.foto , lg.descripcion, lg.categoria , lg.provincia , fv.id_lugar, fv.id_usuario , fv.id_favoritos
+                  FROM lugar lg, favoritos fv WHERE lg.id_lugar = fv.id_lugar and fv.id_usuario = $id_usuario  ORDER BY  id_usuario  DESC LIMIT 5";
+                  
+                                    $resultado = $conexion->query($query);
+                                 while($rows = $resultado-> fetch_assoc()){
+                  
+                                   ?>
+                  
+                  
+                                    <li><!-- start message -->
+                                      <a href="lugar.php">
+                                        <div class="pull-left">
+                                          <img src="data:imagine/jpg;base64,<?php echo base64_encode($rows['foto']);  ?>" class="img-circle" alt="User Image">
+                                        </div>
+                                        <h4>
+                                        <?php  echo $rows['nombre']; ?> 
+                                          <small><i class="fa fa-clock-o"></i> fecha</small>
+                                        </h4>
+                                        <p>  <?php  echo $rows['categoria']; ?> , <?php  echo $rows['provincia']; ?></p>
+                                      </a>
+                                    </li>
+                                    <!-- end message -->
+                  
+                                    <?php } ?>
                  
-                 $id_usuario = $row['id_usuarios'];
-                 $query = "SELECT  lg.id_lugar , lg.nombre, lg.foto , lg.descripcion, lg.categoria , lg.provincia , fv.id_lugar, fv.id_usuario , fv.id_favoritos
-                 FROM lugar lg, favoritos fv WHERE lg.id_lugar = fv.id_lugar and fv.id_usuario = $id_usuario  ORDER BY  id_usuario  DESC LIMIT 5";
-                 
-                                   $resultado = $conexion->query($query);
-                                while($rows = $resultado-> fetch_assoc()){
-                 
-                                  ?>
-                 
-                 
-                                   <li><!-- start message -->
-                                     <a href="lugar.php">
-                                       <div class="pull-left">
-                                         <img src="data:imagine/jpg;base64,<?php echo base64_encode($rows['foto']);  ?>" class="img-circle"  alt="User Image">
-                                       </div>
-                                       <h4>
-                                       <?php  echo $rows['nombre']; ?> 
-                                         <small><i class="fa fa-clock-o"></i> fecha</small>
-                                       </h4>
-                                       <p>  <?php  echo $rows['categoria']; ?> , <?php  echo $rows['provincia']; ?></p>
-                                     </a>
-                                   </li>
-                                   <!-- end message -->
-                 
-                                   <?php } ?>
+                                  
                     <!-- end message -->
                   
       
@@ -213,58 +230,57 @@ if( $cate === '1') {
                 <li class="footer"><a href="#"> Mensajes</a></li>
               </ul>
             </li>
-   
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?>" class="user-image" alt="User Image">
-                <span class="hidden-xs"><?php echo $row['nombre'] ?></span>
-              </a>
-              <ul class="dropdown-menu">
-                <!-- User image -->
-                <li class="user-header">
-                  <img src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?>" class="img-circle" alt="User Image">
-  
-                  <p>
-                  <?php echo $row['nombre'] ?> 
-                    <small><?php echo $row['nacimiento'] ?></small>
-                  </p>
-                </li>
-                <!-- Menu Body -->
-                <li class="user-body">
-                  <div class="row">
-                    <div class="col-xs-4 text-center">
-                      <a href="favoritos.php">Favoritos</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="form_lugar.php">Editar</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="sobre.php">Sobre Nosotros</a>
-                    </div>
-                  </div>
-                  <!-- /.row -->
-                </li>
-                <!-- Menu Footer-->
-                <li class="user-footer">
-                  <div class="pull-left">
-                    <a href="perfil.php" class="btn btn-default btn-flat">Profile</a>
-                  </div>
-                  <div class="pull-right">
-                    <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat">Sign out</a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <!-- Left side column. contains the logo and sidebar -->
+   <!-- User Account: style can be found in dropdown.less -->
+   <li class="dropdown user user-menu">
+   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+     <img src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?>" class="user-image" alt="User Image">
+     <span class="hidden-xs"><?php echo $row['nombre'] ?></span>
+   </a>
+   <ul class="dropdown-menu">
+     <!-- User image -->
+     <li class="user-header">
+       <img src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?>" class="img-circle" alt="User Image">
+
+       <p>
+       <?php echo $row['nombre'] ?> 
+         <small><?php echo $row['nacimiento'] ?></small>
+       </p>
+     </li>
+     <!-- Menu Body -->
+     <li class="user-body">
+       <div class="row">
+         <div class="col-xs-4 text-center">
+           <a href="favoritos.php">Favoritos</a>
+         </div>
+         <div class="col-xs-4 text-center">
+           <a href="form_lugar.php">Editar</a>
+         </div>
+         <div class="col-xs-4 text-center">
+           <a href="sobre.php">Sobre Nosotros</a>
+         </div>
+       </div>
+       <!-- /.row -->
+     </li>
+     <!-- Menu Footer-->
+     <li class="user-footer">
+       <div class="pull-left">
+         <a href="perfil.php" class="btn btn-default btn-flat">Profile</a>
+       </div>
+       <div class="pull-right">
+         <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat">Sign out</a>
+       </div>
+     </li>
+   </ul>
+ </li>
+<!-- Control Sidebar Toggle Button -->
+<li>
+ <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<!-- Left side column. contains the logo and sidebar -->
 
 
 
@@ -284,21 +300,7 @@ if( $cate === '1') {
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-         Perfil
-          <small> mis datos</small>
-        </h1>
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li><a href="#">perfil</a></li>
-    
-        </ol>
-      </section>
-  
-
-    <!-- Main content -->
+   
    <section class="content"> 
  
     
@@ -312,92 +314,44 @@ if( $cate === '1') {
 
           <section class="col-lg-12 connectedSortable">
               
+
+
+
           
           
               <div class="box-body">
 
 
-
-                  <div class="container">
-                      <section class="busqueda col-lg-12">
-                          <nav class="navbar navbar-default">
-                              <div class="conteiner-fluid ">
-                                  <div class="navbar-header">
-                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-1"> <span class="sr-only"> Menu</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a href="#" class="navbar-brand">BUSCADOR</a> </div>
-                                  <div class="collapse navbar-collapse" id="navbar-1">
-                                      <ul class="nav navbar-nav">
-                                          
-                                          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Categoria
-                                      <span class="caret"></span>
-                                      
-                                      </a>
-                                              <ul class="dropdown-menu">
-                                                    <form action="php\obtener\buscar.php" method="POST" role="form">
-                                                      <div class="checkbox">
-                                                          <label>
-                                                              <input type="checkbox"  name="categoria[]" value="Hotel">Hotel</label>
-                                                      </div>
-                                                      <div class="checkbox">
-                                                          <label>
-                                                              <input type="checkbox" name="categoria[]" value="Restaurante">Restaurante</label>
-                                                      </div>
-                                                      <div class="checkbox ">
-                                                          <label>
-                                                              <input type="checkbox" name="categoria[]" value="Aire Libre" >Aire Libre</label>
-                                                      </div>
-                                                                      
-                                              </ul>
-                                          </li>
-                                          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Provincia
-                                      <span class="caret"></span>
-                                      
-                                      </a>
-                                              <ul class="dropdown-menu">
-                                                     
-                                                      <div class="checkbox">
-                                                          <label>
-                                                              <input type="checkbox" name="provincia[]" value="Nicoya">Nicoya</label>
-                                                      </div>
-                                                      <div class="checkbox">
-                                                          <label>
-                                                              <input type="checkbox" name="provincia[]" value="Guanacaste">Guanacaste</label>
-                                                      </div>
-                                                      <div class="checkbox ">
-                                                          <label>
-                                                              <input type="checkbox" name="provincia[]" value="Puntarenas" >Puntarenas</label>
-                                                      </div>
-                                                      <div class="checkbox ">
-                                                          <label>
-                                                              <input type="checkbox" name="provincia[]" value="San Jose" >San Jose</label>
-                                                      </div>
-                                                      <div class="checkbox ">
-                                                          <label>
-                                                              <input type="checkbox" name="provincia[]" value="Alajuela" >Alajuela</label>
-                                                      </div>
-                                                      <div class="checkbox ">
-                                                          <label>
-                                                              <input type="checkbox" name="provincia[]" value="Cartago" >Cartago</label>
-                                                      </div>
-                                                      <div class="checkbox ">
-                                                          <label>
-                                                              <input type="checkbox" name="provincia[]" value="Limon" >Limon</label>
-                                                      </div>
-                                                      </ul>
-                                                    </li>
-                                                      <button type="submit" class="btn btn-default">BUSCAR</button>
-                                                  </form>
-                                            
-                                      </ul>
-                                     <!-- <form action="" class="navbar-form navbar-left " role="search">
-                                          <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Buscar"> </div>
-                                          <button type="submit" class="btn btn-default">BUSCAR</button>
-                                      </form>-->
-                                  </div>
-                              </div>
-                          </nav>
-                      </section>
+              <center>
+              <div class="container ">
+                  <div class="row">
+                        <div class="col-md-12">
+                          
+                        <h1 class="mypetscr">Mypets <label class="label label-danger" >CR</label></h1>
+                        <br>
+                        <br>
+                            <div id="custom-search-input">
+                                <div class="input-group col-md-12">
+                                    <input type="text" class="form-control input-lg" placeholder="Buscar" />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info btn-lg" type="button">
+                                            <i class="glyphicon glyphicon-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                   </div>
+                </div>
+
+            </center>
+                </br>
+              </br>
+
+            
+                
+
+               
 
 
 
@@ -420,163 +374,144 @@ if( $cate === '1') {
   <section class="col-lg-6 col-lg-offset-1 connectedSortable">
     
 
-s
+
     <div class="box-body">
 
 
 
-    <?php
-
-$query = "SELECT * FROM `lugar` WHERE $cate $y $pro;";
-$resultado = $conexion->query($query);
-while($rows = $resultado-> fetch_assoc()){
-
-?>
 
 
 
          <div class="container">
             <div class="row">
-                <div class="col-xs-9 col-sm-9 col-md-6">
-                    <div class="well well-sm">
-                        <div class="row">
-                            <div class=" col-xs-12 col-sm-6 col-md-6">
-                                <img src="data:imagine/jpg;base64,<?php echo base64_encode($rows['foto']);  ?>" alt="" class="img-rounded " width="250" height="200" />
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-6">
-                            <a href="lugar.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?> "  > 
-                            <h4 >
-                                    <span class="badge  fa fa-paw   label-primary"   >  <?php echo $rows['nombre']; ?></span> 
-                                    
-                             </h4> 
-                             </a>
+            <?php
 
-                                <small> <span class="label label-info "><?php echo $rows['categoria']; ?></span>  <span class="label label-danger "><?php echo $rows['provincia']; ?></span> <br> <br>
-                              </small>
-                                <p>
-                                    <i class="glyphicon glyphicon-envelope"></i><?php echo $rows['correo']; ?>
-                                    <br />
-                                    <i class="glyphicon glyphicon-globe"></i><a href="<?php echo $rows['web']; ?>"><?php echo $rows['web']; ?></a>
-                                    <br />
-                                    <i class="	glyphicon glyphicon-phone-alt"></i> <?php echo $rows['telefono']; ?> </p>
-                                <!-- Split button -->
-                                <div class="btn-group">
+$query = "SELECT * FROM `lugar` WHERE $cate $y $pro ";
+$resultado = $conexion->query($query);
+while($rows = $resultado-> fetch_assoc()){
 
-
-
-
-
-
-
-                            <?php 
-                      
-
-                            $id_lugar = $rows['id_lugar'];
-                            $id_usuario = $row['id_usuarios'];
-
-
-
-
-                            $verificar_me = mysqli_query($conexion, "SELECT * FROM `me-gusta` WHERE id_lugar = '$id_lugar' and id_usuario = '$id_usuario' " );
-                            
-                             if(mysqli_num_rows($verificar_me)> 0){
-                              if ($ro = $verificar_me->fetch_row()) {
-                                $id_gusta = ($ro[0]);
-                                $likes = ($ro[3]);
-                           
-                                 }
-
-                              ?>
-                               
-
-                               <button class="btn btn-danger  submit-button " value="1" name ="boton"  onclick="window.location.href = 'php/borrar/b-like.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?>'"  > quitar like <span class="badge "> <?php echo $rows['me-gusta']  ?>  </span> </button>
-                                
-                            
-                               <?php             
-                               }else{
-                                ?>
-                            
-                               
-
-                            <button class="btn btn-success  submit-button " value="1" name ="boton"  onclick="window.location.href = 'php/obtener/me-gusta.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?> '"  > me gusta <span class="badge "> <?php echo $rows['me-gusta']  ?>  </span> </button>
-                                
-                                 <?php
-                                 }
-                            
-                                 ?> 
-                          
-
-
-
-
-                               <?php
-                            
-                          $verificar_usuario = mysqli_query($conexion, "SELECT * FROM favoritos WHERE id_usuario = '$id_usuario' and id_lugar = '$id_lugar' " );
-
-                          if(mysqli_num_rows($verificar_usuario)> 0){
-
-                          ?>
-                           <button class="btn btn-warning " type="button"  > Agregado </button>
-
-                          <?php             
-                          }else{
-                            ?>
-
-                        <a href="php\guardar\g-favoritos.php?id= <?php echo $row['id_usuarios']  ?> &id_lugar= <?php echo $rows['id_lugar']  ?>">  <button class="btn btn-warning " type="button"  > Agregar </button> </a>
-
-                          <?php
-                          }
-
-                          ?> 
-
-             
- 
-
-                          
+?>
+                   
                         
-                           
-                            
-                            
-                            
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                
-            </div>
-        </div>
 
+                            
+                         <div class="row">
+                          <div class="col-sm-6 col-md-6">
+                            <div class="thumbnail" >
+                              <h3 class="text-center"><span class="label label-info"><?php echo $rows['categoria']; ?> </span>     <span class="label label-danger"><?php echo $rows['provincia']; ?></span></h3>
+                            
+                              <img src="data:imagine/jpg;base64,<?php echo base64_encode($rows['foto']);  ?>" class="img-responsive">
+                              <div class="caption">
+                                <div class="row">
+                                  <div class="col-md-12 col-xs-12">
+                                  <a href="lugar.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?> "  > 
+                                    <h3 class="text-center" >    </span>   <label class="badge  fa fa-paw  label-info"> <?php echo $rows['nombre']; ?> </label></h3>
+                                    </a>
+                                  </div>
+                                  <div class="col-md-12 col-xs-12 price">
+                                 
+                                    <h4 class="text-center">
+                                  <label>Correo:</label><?php echo $rows['correo']; ?> <label>Telefono:</label><?php echo $rows['telefono']; ?></h4>
+                                  </div>
+                                </div>
+                                 
+                             <p class="text-center"> <label>Descripcion:</label><?php echo $rows['descripcion']; ?></p>
+                             <div class="row">
+                                  <center>
+                                  <div class="col-md-12">
+
+                                  <?php 
+                                  
+            
+                                        $id_lugar = $rows['id_lugar'];
+                                        $id_usuario = $row['id_usuarios'];
+            
+            
+            
+            
+                                        $verificar_me = mysqli_query($conexion, "SELECT * FROM `me-gusta` WHERE id_lugar = '$id_lugar' and id_usuario = '$id_usuario' " );
+                                        
+                                         if(mysqli_num_rows($verificar_me)> 0){
+                                          if ($ro = $verificar_me->fetch_row()) {
+                                            $id_gusta = ($ro[0]);
+                                            $likes = ($ro[3]);
+                                       
+                                             }
+            
+                                          ?>
+                                           
+            
+                                           <button class="btn btn-danger  submit-button " value="1" name ="boton"  onclick="window.location.href = 'php/borrar/b-like.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?>'"  > quitar like <span class="badge "> <?php echo $rows['me-gusta']  ?>  </span> </button>
+                                            
+                                        
+                                           <?php             
+                                           }else{
+                                            ?>
+                                        
+                                           
+            
+                                        <button class="btn btn-success  submit-button " value="1" name ="boton"  onclick="window.location.href = 'php/obtener/me-gusta.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?> '"  > me gusta <span class="badge "> <?php echo $rows['me-gusta']  ?>  </span> </button>
+                                            
+                                             <?php
+                                             }
+                                        
+                                             ?> 
+                                      
+            
+            
+            
+            
+                                           <?php
+                                        
+                                      $verificar_usuario = mysqli_query($conexion, "SELECT * FROM favoritos WHERE id_usuario = '$id_usuario' and id_lugar = '$id_lugar' " );
+            
+                                      if(mysqli_num_rows($verificar_usuario)> 0){
+            
+                                      ?>
+                                       <button class="btn btn-warning " type="button"  > Agregado </button>
+            
+                                      <?php             
+                                      }else{
+                                        ?>
+            
+                                    <a href="php\guardar\g-favoritos.php?id= <?php echo $row['id_usuarios']  ?> &id_lugar= <?php echo $rows['id_lugar']  ?>">  <button class="btn btn-warning " type="button"  > Agregar </button> </a>
+            
+                                      <?php
+                                      }
+            
+                                      ?> 
+            
+
+
+                                </div>
+                              </center>
+                            </div>
+                                <p> </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                   
+
+
+                    
         <?php 
 }
 
 ?>
-
-
-
-                    
-                       
-                 
-                 
-                 
-    </div>
                  
 
-          
 
 
 
+                    </div>
 
 
 
-
-
-
- 
-    
-    
+                </div>
+                
+            </div>
+   
 
 
    </section>
@@ -584,7 +519,126 @@ while($rows = $resultado-> fetch_assoc()){
    <!-- right col (We are only adding the ID to make the widgets sortable)-->
    
    
-   <section class="  col-lg-4 connectedSortable">
+   <section class=" col-lg-4 connectedSortable ">
+
+  <!-- iCheck -->
+  <div class="box box-success">
+     
+            <div class="box-header">
+                <h1 class=" text-center"> <strong>FILTROS</strong></h1>
+              </div>
+              
+              <div class="box-body   ">
+    
+
+               <center>
+                  <form action="php\obtener\buscar.php" method="POST" role="form">
+                      <ul class="nav navbar-nav " >
+                           
+                  
+                       
+                          <div class="col-sm-12 col-md-12     caja">
+                         
+                       
+                            <li class="dropdown align-text-bottom "><a href="#" class="dropdown-toggle li" data-toggle="dropdown" role="button">Categoria
+                        <span class="caret"></span>
+
+                        </a>
+                      
+                                <ul class="dropdown-menu">
+                                
+                                        <div class="checkbox">
+                                            <label class="te">
+                                                <input type="checkbox"  class="flat-red" checked name="categoria[]" value="Hotel">Hotel</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label class="te">
+                                                <input type="checkbox" class="flat-red"  name="categoria[]" value="Restaurante">Restaurante</label>
+                                        </div>
+                                        <div class="checkbox ">
+                                            <label class="te">
+                                                <input type="checkbox" class="flat-red"  name="categoria[]" value="Aire Libre" >Aire Libre</label>
+                                        </div>
+                                                   
+                                </ul>
+
+                            
+                            </li>
+                        
+                            </div>
+                         
+                         
+                          <div class="col-sm-12 col-md-12   ">
+                            </br>
+                            <hr>
+                            </br>
+                          </div>
+
+                        <div class="col-sm-12 col-md-12    caja1">
+                      
+                            <li class="dropdown  align-text-bottom "  href="#" ><a href="#" class="dropdown-toggle li1" data-toggle="dropdown" role="button"> Provincia
+                        <span class="caret"></span>
+                        
+                        </a>
+                                <ul class="dropdown-menu">
+                                    
+                                        <div class="checkbox">
+                                            <label class="te" >
+                                                <input type="checkbox" class="flat-red" checked  name="provincia[]" value="Nicoya">Nicoya</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label class="te"  >
+                                                <input type="checkbox" class="flat-red"  name="provincia[]" value="Guanacaste">Guanacaste</label>
+                                        </div>
+                                        <div class="checkbox ">
+                                            <label class="te">
+                                                <input type="checkbox" class="flat-red"  name="provincia[]" value="Puntarenas" >Puntarenas</label>
+                                        </div>
+                                        <div class="checkbox ">
+                                            <label class="te">
+                                                <input type="checkbox" class="flat-red"  name="provincia[]" value="San Jose" >San Jose</label>
+                                        </div>
+                                        <div class="checkbox ">
+                                            <label class="te">
+                                                <input type="checkbox" class="flat-red"  name="provincia[]" value="Alajuela" >Alajuela</label>
+                                        </div>
+                                        <div class="checkbox ">
+                                            <label class="te">
+                                                <input type="checkbox" class="flat-red"  name="provincia[]" value="Cartago" >Cartago</label>
+                                        </div>
+                                        <div class="checkbox ">
+                                            <label class="te">
+                                                <input type="checkbox" class="flat-red"  name="provincia[]" value="Limon" >Limon</label>
+                                        </div>
+                                   
+                                        </ul>
+                                      </li>  
+                              
+                                    </div>
+
+                                   
+                                      </ul>
+                                  
+                                  <div class="col-sm-12 col-md-12">
+                                   
+                                  </br>
+                                      <button type="submit" class="btn btn-warning btn-lg">BUSCAR</button>
+                                  </div>
+                                    </form>
+                                  </center>
+
+     </div>
+                              
+     
+      <!-- /.box-body -->
+      <div class="box-footer">
+        Many more skins available. <a href="http://fronteed.com/iCheck/">Documentation</a>
+      </div>
+    </div>
+
+  
+
+
 
           <!-- Map box -->
           <div class="box box-solid bg-light-blue-gradient">
@@ -616,6 +670,7 @@ while($rows = $resultado-> fetch_assoc()){
 
 
 
+
    </section>
 
 
@@ -631,13 +686,77 @@ while($rows = $resultado-> fetch_assoc()){
   <?php }
   ?>
 
-  <footer class="footer">
-      <div class="pull-right hidden-xs">
-        <b>Version</b> 1.1.0
-      </div>
-      <strong>Copyright &copy; Mypetsc <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-      reserved.
-    </footer>
+ <!--Footer-->
+ <footer class="footer1">
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="footer-desc text-center">
+                        <img src="http://superdevresources.com/images/super-dev-resources-logo.png" width="82" height="48" alt="">
+                        <p>
+                            <a href="/" rel="home" title="Super Dev Resources">Super Dev Resources</a> is a popular blog for finding<br>awesome free app and web development resources. <a href="/about/">Learn More</a>
+                        </p>
+                    </div>
+                </div>
+              
+         
+                    <ul class="social ">
+                <div class="container-fluid">
+                    <div class="row">
+                    <div class="sicon ">
+                
+                      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                        <div class="icon-circle">
+                          <a href="#" class="ifacebook" title="Facebook"><i class="fa fa-facebook"></i></a>
+                        </div>
+                      </div>
+                     
+                      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                        <div class="icon-circle">
+                          <a href="#" class="itwittter" title="Twitter"><i class="fa fa-twitter"></i></a>
+                        </div>
+                      </div>
+                      
+                      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                        <div class="icon-circle">
+                          <a href="#" class="igoogle" title="Google+"><i class="fa fa-google-plus"></i></a>
+                        </div>
+                      </div>
+                      
+                      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                        <div class="icon-circle">
+                          <a href="#" class="iLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                      </div>
+                
+                    </div>
+                  </div>
+                </div>
+                    </ul>
+               
+
+
+                <nav class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+                    <div class="input-group input-group-md">
+                      <input type="text" class="form-control" placeholder="Email Address">
+                      <span class="input-group-addon">Subscribe</span>
+                    </div>
+                </nav>
+            </div> <!--/.row--> 
+        </div> <!--/.container--> 
+    </div> <!--/.footer-->
+    
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="pull-left"> Copyright © <a href="">Rizwan Akram</a>.  All right reserved.</div>
+        
+        </div>
+    </div> <!--/.footer-bottom--> 
+</footer>
+    <!--/Footer-->
+                    
+    
   
 
 
@@ -882,5 +1001,48 @@ while($rows = $resultado-> fetch_assoc()){
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+
+<!-- iCheck 1.0.1 -->
+<script src="plugins/iCheck/icheck.min.js"></script>
+
+
+<script>
+    $(function () {
+
+  
+      //Date picker
+      $('#datepicker').datepicker({
+        autoclose: true
+      })
+  
+      //iCheck for checkbox and radio inputs
+      $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass   : 'iradio_minimal-blue'
+      })
+      //Red color scheme for iCheck
+      $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+        checkboxClass: 'icheckbox_minimal-red',
+        radioClass   : 'iradio_minimal-red'
+      })
+      //Flat red color scheme for iCheck
+      $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+        checkboxClass: 'icheckbox_flat-green',
+        radioClass   : 'iradio_flat-green'
+      })
+  
+      //Colorpicker
+      $('.my-colorpicker1').colorpicker()
+      //color picker with addon
+      $('.my-colorpicker2').colorpicker()
+  
+      //Timepicker
+      $('.timepicker').timepicker({
+        showInputs: false
+      })
+    })
+  </script>
+
+
 </body>
 </html>

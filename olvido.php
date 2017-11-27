@@ -31,11 +31,12 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <link rel="stylesheet" href="css/estilos-add-clientes-copia.css">
+  <link rel="stylesheet" href="css/estilos-footer.css">
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="layout-boxed skin-blue sidebar-mini">
 <div class="wrapper">
 
   
@@ -216,11 +217,76 @@
   <!-- /.content-wrapper -->
 
 
-
-  <footer class="footer">
- 
+<!--Footer-->
+<footer class="footer1">
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="footer-desc text-center">
+                    <img src="http://superdevresources.com/images/super-dev-resources-logo.png" width="82" height="48" alt="">
+                    <p>
+                        <a href="/" rel="home" title="Super Dev Resources">Super Dev Resources</a> is a popular blog for finding<br>awesome free app and web development resources. <a href="/about/">Learn More</a>
+                    </p>
+                </div>
+            </div>
           
-    </footer>
+     
+                <ul class="social ">
+            <div class="container-fluid">
+                <div class="row">
+                <div class="sicon ">
+            
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                    <div class="icon-circle">
+                      <a href="#" class="ifacebook" title="Facebook"><i class="fa fa-facebook"></i></a>
+                    </div>
+                  </div>
+                 
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                    <div class="icon-circle">
+                      <a href="#" class="itwittter" title="Twitter"><i class="fa fa-twitter"></i></a>
+                    </div>
+                  </div>
+                  
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                    <div class="icon-circle">
+                      <a href="#" class="igoogle" title="Google+"><i class="fa fa-google-plus"></i></a>
+                    </div>
+                  </div>
+                  
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                    <div class="icon-circle">
+                      <a href="#" class="iLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+                    </div>
+                  </div>
+            
+                </div>
+              </div>
+            </div>
+                </ul>
+           
+
+
+            <nav class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+                <div class="input-group input-group-md">
+                  <input type="text" class="form-control" placeholder="Email Address">
+                  <span class="input-group-addon">Subscribe</span>
+                </div>
+            </nav>
+        </div> <!--/.row--> 
+    </div> <!--/.container--> 
+</div> <!--/.footer-->
+
+<div class="footer-bottom">
+    <div class="container">
+        <div class="pull-left"> Copyright © <a href="">Rizwan Akram</a>.  All right reserved.</div>
+    
+    </div>
+</div> <!--/.footer-bottom--> 
+</footer>
+<!--/Footer-->
+                
   
 
 
