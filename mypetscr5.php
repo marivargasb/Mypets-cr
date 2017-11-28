@@ -30,15 +30,12 @@
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="plugins/iCheck/all.css">
     <link rel="stylesheet" href="bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
-    <link rel="stylesheet" href="css/estilos.css">
-    <link rel="stylesheet" href="css/estilos-footer.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
-
-
-    
    
-  <!--  <link rel="stylesheet" href="css/estilos.css">
-      HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <link rel="stylesheet" href="css/estilos-footer.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -54,34 +51,65 @@
     
       <header class="main-header  ">
 
-
       <?php
-  
-  include 'C:\xampp\htdocs\Mypetscr\php\cn.php';
-  
-  session_start();
-if(isset($_SESSION['id'])){
-  
-    $id = $_SESSION['id'];
-
-   
-
-  //  header("Location: php\obtener\busque.php?id= $id");
-  
-  }else{
-  
-    header("Location: registro.php");
-  
-  }
-  echo "<script>\n";
-   echo "var_id ='" .$id. "'\n";
-  echo "</script>\n";
- 
-  
-  $query = "SELECT * FROM usuarios WHERE id_usuarios = '$id' ";
-  $resultado = $conexion->query($query);
-  if($row = $resultado-> fetch_assoc()){
-  ?>
+      
+      include 'C:\xampp\htdocs\Mypetscr\php\cn.php';
+      
+      session_start();
+    if(isset($_SESSION['id'])){
+      
+        $id = $_SESSION['id'];
+    
+       
+      
+      }else{
+      
+        header("Location: registro.php");
+      
+      }
+    
+      $cate = $_GET['categoria'];
+      $pro= $_GET['provincia'];
+      $y = "AND";
+    
+      
+    
+    if( $cate === '1') {
+    
+        $y = "";
+        $cate = "";
+        
+    
+        if($pro === '1' ){
+            
+                    $y = "";
+                    $pro= "";
+                   
+                }
+      }else{
+      
+    
+        if($pro === '1' ){
+    
+            $y = "";
+            $pro= "";
+            
+        }
+        
+      }
+    
+         
+       
+    
+        //  echo "WHERE " .$cate .$y .$pro;
+    
+      
+      $query = "SELECT * FROM usuarios WHERE id_usuarios = '$id' ";
+      $resultado = $conexion->query($query);
+      if($row = $resultado-> fetch_assoc()){
+      ?>
+      
+    
        
         <!-- Logo -->
         <a href="index2.html" class="logo">
@@ -302,10 +330,9 @@ if(isset($_SESSION['id'])){
                         <h1 class="mypetscr">Mypets <label class="label label-danger" >CR</label></h1>
                         <br>
                         <br>
-                            <div  id="custom-search-input">
+                            <div id="custom-search-input">
                                 <div class="input-group col-md-12">
-                                   
-                                    <input id="busquedas"  type="text" class="form-control input-lg" placeholder="Buscar" />
+                                    <input type="text" class="form-control input-lg" placeholder="Buscar" />
                                     <span class="input-group-btn">
                                         <button class="btn btn-info btn-lg" type="button">
                                             <i class="glyphicon glyphicon-search"></i>
@@ -317,8 +344,6 @@ if(isset($_SESSION['id'])){
                   </div>
                 </div>
 
-
-             
             </center>
                 </br>
               </br>
@@ -359,16 +384,9 @@ if(isset($_SESSION['id'])){
 
          <div class="container">
             <div class="row">
-
-
-            <div id="datos">
-
-
-            
-
             <?php
 
-$query = "SELECT * FROM `lugar` ";
+$query = "SELECT * FROM `lugar` WHERE $cate $y $pro ";
 $resultado = $conexion->query($query);
 while($rows = $resultado-> fetch_assoc()){
 
@@ -481,15 +499,7 @@ while($rows = $resultado-> fetch_assoc()){
 }
 
 ?>
-
-
-
-            </div>
-            
-
-
-
-
+                 
 
 
 
@@ -522,12 +532,12 @@ while($rows = $resultado-> fetch_assoc()){
     
 
                <center>
-                <form action="php\obtener\buscar.php" method="POST" role="form">
+                  <form action="php\obtener\buscar.php" method="POST" role="form">
                       <ul class="nav navbar-nav " >
                            
                   
                        
-                          <div class="col-sm-12 col-md-12 text-center  caja">
+                          <div class="col-sm-12 col-md-12     caja">
                          
                        
                             <li class="dropdown align-text-bottom "><a href="#" class="dropdown-toggle li" data-toggle="dropdown" role="button">Categoria
@@ -559,14 +569,14 @@ while($rows = $resultado-> fetch_assoc()){
                          
                          
                           <div class="col-sm-12 col-md-12   ">
-                        
+                            </br>
                             <hr>
-                         
+                            </br>
                           </div>
 
                         <div class="col-sm-12 col-md-12    caja1">
                       
-                            <li class="dropdown "  href="#" ><a href="#" class="dropdown-toggle li1" data-toggle="dropdown" role="button"> Provincia
+                            <li class="dropdown  align-text-bottom "  href="#" ><a href="#" class="dropdown-toggle li1" data-toggle="dropdown" role="button"> Provincia
                         <span class="caret"></span>
                         
                         </a>
@@ -608,15 +618,8 @@ while($rows = $resultado-> fetch_assoc()){
 
                                    
                                       </ul>
-
-                                      
                                   
                                   <div class="col-sm-12 col-md-12">
-                                  <div class="checkbox">
-                                    <label class="te" >
-                                       <input type="checkbox" class="flat-red" checked  name="populares" value="mejores">Mas Populares</label>
-                                      </div>
-
                                    
                                   </br>
                                       <button type="submit" class="btn btn-warning btn-lg">BUSCAR</button>
@@ -628,8 +631,8 @@ while($rows = $resultado-> fetch_assoc()){
                               
      
       <!-- /.box-body -->
-      <div class="box-footer text-center">
-     VER TODOS <a href="mypetscr.php">IR</a>
+      <div class="box-footer">
+        Many more skins available. <a href="http://fronteed.com/iCheck/">Documentation</a>
       </div>
     </div>
 
@@ -960,10 +963,8 @@ while($rows = $resultado-> fetch_assoc()){
  
 </div>
 <!-- ./wrapper -->
-<script type="text/javascript" src="js/buscar.js"></script>
 
-
-<!-- jQuery 3  <script src="js/jquery-3.2.1.min.js"></script> -->
+<!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
@@ -1001,11 +1002,8 @@ while($rows = $resultado-> fetch_assoc()){
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 
-
-
-
-<!-- iCheck 1.0.1  -->
-<script  src="plugins/iCheck/icheck.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="plugins/iCheck/icheck.min.js"></script>
 
 
 <script>

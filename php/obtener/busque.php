@@ -11,7 +11,7 @@ if(isset($_POST['busquedas'])){
 
 $busquedas =  $_POST['busquedas'];
 
-echo $busquedas;
+echo "RESULTADOS DE: ".$busquedas;
 
 $query  =  "SELECT * FROM `lugar`WHERE nombre LIKE '%$busquedas%' OR  categoria LIKE '%$busquedas%' OR   provincia LIKE '%$busquedas%' ";
 
@@ -101,8 +101,25 @@ while($fila = $resultado  ->fetch_assoc()){
 }
 
 
+}else{
+
+
+
+
+
+echo $salida.="
+
+<div class='row'>
+<div class='col-sm-6 col-md-6'>
+ 
+  
+    <img src='https://assets.materialup.com/uploads/c83a9663-be0b-4397-b1af-67f520e44ef1/preview.png' class='img-responsive'>
+
+  
+</div>
+</div>
+
+";
+
 }
-
 echo $salida;
-
-

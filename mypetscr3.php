@@ -30,15 +30,12 @@
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="plugins/iCheck/all.css">
     <link rel="stylesheet" href="bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
-    <link rel="stylesheet" href="css/estilos.css">
+   
     <link rel="stylesheet" href="css/estilos-footer.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
-
-
+    <link rel="stylesheet" href="css/estilos.css">
     
    
-  <!--  <link rel="stylesheet" href="css/estilos.css">
-      HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -65,18 +62,14 @@ if(isset($_SESSION['id'])){
     $id = $_SESSION['id'];
 
    
-
-  //  header("Location: php\obtener\busque.php?id= $id");
   
   }else{
   
     header("Location: registro.php");
   
   }
-  echo "<script>\n";
-   echo "var_id ='" .$id. "'\n";
-  echo "</script>\n";
- 
+
+
   
   $query = "SELECT * FROM usuarios WHERE id_usuarios = '$id' ";
   $resultado = $conexion->query($query);
@@ -302,10 +295,9 @@ if(isset($_SESSION['id'])){
                         <h1 class="mypetscr">Mypets <label class="label label-danger" >CR</label></h1>
                         <br>
                         <br>
-                            <div  id="custom-search-input">
+                            <div id="custom-search-input">
                                 <div class="input-group col-md-12">
-                                   
-                                    <input id="busquedas"  type="text" class="form-control input-lg" placeholder="Buscar" />
+                                    <input id="busqueda" type="text" class="form-control input-lg" placeholder="Buscar" />
                                     <span class="input-group-btn">
                                         <button class="btn btn-info btn-lg" type="button">
                                             <i class="glyphicon glyphicon-search"></i>
@@ -317,8 +309,6 @@ if(isset($_SESSION['id'])){
                   </div>
                 </div>
 
-
-             
             </center>
                 </br>
               </br>
@@ -359,19 +349,122 @@ if(isset($_SESSION['id'])){
 
          <div class="container">
             <div class="row">
+            <?php
 
+$query = "SELECT * FROM `lugar` WHERE  categoria IN ( 'Hotel', 'Aire Libre', 'Restaurante','Salud', 'Estetica') AND provincia IN ('Cartago', 'Nicoya', 'Alajuela', 'Guanacaste','Puntarenas', 'San Jose' , 'Limon');";
+$resultado = $conexion->query($query);
+while($rows = $resultado-> fetch_assoc()){
 
-            <div id="datos">
+?>
+                   
+                        
 
+                            
+                         <div class="row">
+                          <div class="col-sm-6 col-md-6">
+                            <div class="thumbnail" >
+                              <h3 class="text-center"><span class="label label-info"><?php echo $rows['categoria']; ?> </span>     <span class="label label-danger"><?php echo $rows['provincia']; ?></span></h3>
+                            
+                              <img src="data:imagine/jpg;base64,<?php echo base64_encode($rows['foto']);  ?>" class="img-responsive">
+                              <div class="caption">
+                                <div class="row">
+                                  <div class="col-md-12 col-xs-12">
+                                  <a href="lugar.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?> "  > 
+                                    <h3 class="text-center" >    </span>   <label class="badge  fa fa-paw  label-info"> <?php echo $rows['nombre']; ?> </label></h3>
+                                    </a>
+                                  </div>
+                                  <div class="col-md-12 col-xs-12 price">
+                                 
+                                    <h4 class="text-center">
+                                  <label>Correo:</label><?php echo $rows['correo']; ?> <label>Telefono:</label><?php echo $rows['telefono']; ?></h4>
+                                  </div>
+                                </div>
+                                 
+                             <p class="text-center"> <label>Descripcion:</label><?php echo $rows['descripcion']; ?></p>
+                             <div class="row">
+                                  <center>
+                                  <div class="col-md-12">
 
-
-
-            </div>
+                                  <?php 
+                                  
+            
+                                        $id_lugar = $rows['id_lugar'];
+                                        $id_usuario = $row['id_usuarios'];
+            
+            
+            
+            
+                                        $verificar_me = mysqli_query($conexion, "SELECT * FROM `me-gusta` WHERE id_lugar = '$id_lugar' and id_usuario = '$id_usuario' " );
+                                        
+                                         if(mysqli_num_rows($verificar_me)> 0){
+                                          if ($ro = $verificar_me->fetch_row()) {
+                                            $id_gusta = ($ro[0]);
+                                            $likes = ($ro[3]);
+                                       
+                                             }
+            
+                                          ?>
+                                           
+            
+                                           <button class="btn btn-danger  submit-button " value="1" name ="boton"  onclick="window.location.href = 'php/borrar/b-like.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?>'"  > quitar like <span class="badge "> <?php echo $rows['me-gusta']  ?>  </span> </button>
+                                            
+                                        
+                                           <?php             
+                                           }else{
+                                            ?>
+                                        
+                                           
+            
+                                        <button class="btn btn-success  submit-button " value="1" name ="boton"  onclick="window.location.href = 'php/obtener/me-gusta.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?> '"  > me gusta <span class="badge "> <?php echo $rows['me-gusta']  ?>  </span> </button>
+                                            
+                                             <?php
+                                             }
+                                        
+                                             ?> 
+                                      
+            
+            
+            
+            
+                                           <?php
+                                        
+                                      $verificar_usuario = mysqli_query($conexion, "SELECT * FROM favoritos WHERE id_usuario = '$id_usuario' and id_lugar = '$id_lugar' " );
+            
+                                      if(mysqli_num_rows($verificar_usuario)> 0){
+            
+                                      ?>
+                                       <button class="btn btn-warning " type="button"  > Agregado </button>
+            
+                                      <?php             
+                                      }else{
+                                        ?>
+            
+                                    <a href="php\guardar\g-favoritos.php?id= <?php echo $row['id_usuarios']  ?> &id_lugar= <?php echo $rows['id_lugar']  ?>">  <button class="btn btn-warning " type="button"  > Agregar </button> </a>
+            
+                                      <?php
+                                      }
+            
+                                      ?> 
             
 
 
+                                </div>
+                              </center>
+                            </div>
+                                <p> </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                   
 
 
+                    
+        <?php 
+}
+
+?>
+                 
 
 
 
@@ -835,10 +928,8 @@ if(isset($_SESSION['id'])){
  
 </div>
 <!-- ./wrapper -->
-<script type="text/javascript" src="js/buscar.js"></script>
 
-
-<!-- jQuery 3  <script src="js/jquery-3.2.1.min.js"></script> -->
+<!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
@@ -875,12 +966,11 @@ if(isset($_SESSION['id'])){
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script src="js/main.js"></script>
+<script src="js/jquery-3.2.1.min"></script>
 
-
-
-
-<!-- iCheck 1.0.1  -->
-<script  src="plugins/iCheck/icheck.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="plugins/iCheck/icheck.min.js"></script>
 
 
 <script>
