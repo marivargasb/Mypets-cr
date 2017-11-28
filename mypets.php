@@ -30,7 +30,7 @@
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="plugins/iCheck/all.css">
     <link rel="stylesheet" href="bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
-   
+    <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/estilos-footer.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
 
@@ -65,14 +65,18 @@ if(isset($_SESSION['id'])){
     $id = $_SESSION['id'];
 
    
+
+  //  header("Location: php\obtener\busque.php?id= $id");
   
   }else{
   
     header("Location: registro.php");
   
   }
-
-
+  echo "<script>\n";
+   echo "var_id ='" .$id. "'\n";
+  echo "</script>\n";
+ 
   
   $query = "SELECT * FROM usuarios WHERE id_usuarios = '$id' ";
   $resultado = $conexion->query($query);
@@ -314,7 +318,7 @@ if(isset($_SESSION['id'])){
                 </div>
 
 
-              =
+             
             </center>
                 </br>
               </br>

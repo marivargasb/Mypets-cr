@@ -54,11 +54,12 @@
     
       $id = $_SESSION['id'];
   
+      
      
     
     }else{
     
-      header("Location: registro.php");
+     // header("Location: registro.php");
     
     }
 

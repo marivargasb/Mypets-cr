@@ -396,7 +396,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
                                     </h3>
                                     
                         <a href="php\borrar\b-favoritos.php?id= <?php echo $rows['id_favoritos']  ?> ">  <button class="btn btn-danger "  type="button"  > ELIMINAR </button> </a>
-                                    <p><?php echo $rows['descripcion'] ?></p>
+                                   
                                    
                                 </div>
 
