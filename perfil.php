@@ -98,31 +98,42 @@ if($row = $resultado-> fetch_assoc()){
         
 
 
-  <li class="dropdown messages-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-envelope-o"></i>
-                  <span class="label label-success"> <?php 
-                   
-                    $cont;
-                  
-                  ?></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">You have  messages</li>
-                <li>
-                  <!-- inner menu: contains the actual data -->
-                  <ul class="menu">
+
 <?php
+$cont = 0;
 $id_usuario = $row['id_usuarios'];
 $query = "SELECT DISTINCT us.id_usuarios, us.nombre, us.foto , cm.* ,lg.id_lugar 
 FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario  and cm.estado = 'inactivo'  and cm.id_lugar = lg.id_lugar  and lg.id_usuario = $id_usuario ";
+  $resultados = $conexion->query($query);
 
+  while($rowsts = $resultados-> fetch_assoc()){
+   $cont++;
 
-                    $resultado = $conexion->query($query);
+  }
+
+  
+?>
+<li class="dropdown messages-menu">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+  <i class="fa fa-envelope-o"></i>
+    <span class="label label-success"> <?php 
+     
+    echo  $cont;
+    ?></span>
+</a>
+<ul class="dropdown-menu">
+  <li class="header">You have  messages</li>
+  <li>
+    <!-- inner menu: contains the actual data -->
+    <ul class="menu">
+<?php
+         $id_usuario = $row['id_usuarios'];
+         $query = "SELECT DISTINCT us.id_usuarios, us.nombre, us.foto , cm.* ,lg.id_lugar 
+         FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario  and cm.estado = 'inactivo'  and cm.id_lugar = lg.id_lugar  and lg.id_usuario = $id_usuario ";
+           $resultado = $conexion->query($query);         
                  while($rowst = $resultado-> fetch_assoc()){
                   
-                  $cont = $contado ++; 
-                  echo $cont;
+                  $cont++;
                    ?>
 
                    
@@ -308,7 +319,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
  
        <ul class="treeview-menu">
          <li><a href="form_lugar.php"><i class="fa fa-circle-o"></i> Editar Pagina</a></li>
-         <li><a href="lugar.php?id= <?php echo $row['id_usuarios']  ?> "><i class="fa fa-circle-o"></i> Pagina Online</a></li>
+        
        </ul>
     
 
@@ -508,7 +519,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
                     
                        <div class="active tab-pane" id="activity">
                     
-                           <form  action="php\modificar\o-perfil.php?id= <?php echo $row['id_usuarios']  ?>" method="POST" class="form">
+                           <form  action="php\modificar\o-perfil.php?id= <?php echo $row['id_usuarios']  ?>" method="POST" class="form" enctype="multipart/form-data">
                                <div class="form-group">
                                  <label for="exampleInputEmail1">Nombre </label>
                                  <input type="text" class="form-control"  name="nombre" id="nombre" aria-describedby="emailHelp" value="<?php echo $row['nombre'] ?>">
@@ -529,7 +540,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
                                <div class="form-group">
                                  <label for="exampleInputFile">Fotos de perfil</label>
                                  <img  src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?>"  class=" col-lg-2 col-sm-3 col-xs-3 col-md-2 img-rounded " >
-                                 <input type="file" class="form-control-file" name="foto" id="foto" >
+                                 <input type="file" class="form-control-file" name="foto" value="<?php echo base64_encode($row['foto']);  ?>" >
                                  <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
                                </div>
                              

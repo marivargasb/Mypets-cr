@@ -85,49 +85,70 @@
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
         
-        <!-- Messages: style can be found in dropdown.less-->
-        <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">2</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 2 messages</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Andrea
-                        <small><i class="fa fa-clock-o"></i> fecha</small>
-                      </h4>
-                      <p>es un gran lugar</p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Marta
-                        <small><i class="fa fa-clock-o"></i> fecha</small>
-                      </h4>
-                      <p>ese lugar no me gusta</p>
-                    </a>
-                  </li>
-                
-                </ul>
-              </li>
-              <li class="footer"><a href="form_lugar.php"> Mensajes</a></li>
-            </ul>
-          </li>
+                <!-- Messages: style can be found in dropdown.less-->
+        
 
+
+
+<?php
+$cont = 0;
+$id_usuario = $row['id_usuarios'];
+$query = "SELECT DISTINCT us.id_usuarios, us.nombre, us.foto , cm.* ,lg.id_lugar 
+FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario  and cm.estado = 'inactivo'  and cm.id_lugar = lg.id_lugar  and lg.id_usuario = $id_usuario ";
+  $resultados = $conexion->query($query);
+
+  while($rowsts = $resultados-> fetch_assoc()){
+   $cont++;
+
+  }
+
+  
+?>
+<li class="dropdown messages-menu">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+  <i class="fa fa-envelope-o"></i>
+    <span class="label label-success"> <?php 
+     
+    echo  $cont;
+    ?></span>
+</a>
+<ul class="dropdown-menu">
+  <li class="header">You have  messages</li>
+  <li>
+    <!-- inner menu: contains the actual data -->
+    <ul class="menu">
+<?php
+         $id_usuario = $row['id_usuarios'];
+         $query = "SELECT DISTINCT us.id_usuarios, us.nombre, us.foto , cm.* ,lg.id_lugar 
+         FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario  and cm.estado = 'inactivo'  and cm.id_lugar = lg.id_lugar  and lg.id_usuario = $id_usuario ";
+           $resultado = $conexion->query($query);         
+                 while($rowst = $resultado-> fetch_assoc()){
+                  
+                  $cont++;
+                   ?>
+
+                   
+<li><!-- start message -->
+<a href="php\modificar\o-activos.php?id= <?php echo $rowst['id_comentario'] ?> &lugar= <?php echo $rowst['id_lugar']  ?>">
+  <div class="pull-left">
+    <img src="data:imagine/jpg;base64,<?php echo base64_encode($rowst['foto']);  ?>" class="img-circle" alt="User Image">
+  </div>
+  <h4>
+  <?php  echo $rowst['nombre']; ?>
+    <small><i class="fa fa-clock-o"></i>  <?php  echo $rowst['fecha']; ?></small>
+  </h4>
+  <p> <?php  echo $rowst['mensaje']; ?></p>
+</a>
+</li>
+
+                    <!-- end message -->
+                    <?php } ?>
+                  
+                  </ul>
+                </li>
+                <li class="footer"><a href="form_lugar.php"> Mensajes</a></li>
+              </ul>
+            </li>
         <!-- Notifications: style can be found in dropdown.less -->
         <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -288,7 +309,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
 
      <ul class="treeview-menu">
        <li><a href="form_lugar.php"><i class="fa fa-circle-o"></i> Editar Pagina</a></li>
-       <li><a href="lugar.php?id= <?php echo $row['id_usuarios']  ?> "><i class="fa fa-circle-o"></i> Pagina Online</a></li>
+     
      </ul>
   
 

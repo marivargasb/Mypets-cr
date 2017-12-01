@@ -45,11 +45,7 @@ if(!$resultado){
     </script>';
 }else{
 
-    echo '<script> alert("  REGISTRO EXITOSA");
-    window.history.go(-1);
-    </script>';
-   
-    
+ 
     $verificar_usuario = mysqli_query($conexion, " SELECT * FROM `datos` WHERE id_datos = '1' " );
     
 
@@ -63,8 +59,12 @@ if(!$resultado){
     $query = "UPDATE `datos` SET `cantidad`= '$cant'  WHERE id_datos= '1' ";
     $resultado = $conexion->query($query);
     
-
-
+    echo '<script> alert("  REGISTRO EXITOSA");
+    </script>';
+   
+    $extra = '..\..\form_lugar.php';
+    
+        header("Location: $extra ");
 
 
 }

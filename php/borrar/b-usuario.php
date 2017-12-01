@@ -148,12 +148,12 @@ if(!$result){
 
 
         echo '<script>  alert(" CUENTA ELIMINADA");
-        window.history.go(-1);
+    
         </script>';
  
  
-      $extra = '..\..\..\registro.php';
-       
+      $extra = '..\..\registro.php';
+     
          header("Location: $extra ");
     }else{
 

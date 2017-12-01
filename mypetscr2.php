@@ -140,42 +140,64 @@ if( $cate === '1') {
     
     
           
-          <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-envelope-o"></i>
-                <span class="label label-success">2</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">You have 2 messages</li>
-                <li>
-                  <!-- inner menu: contains the actual data -->
-                  <ul class="menu">
-                    <li><!-- start message -->
-                      <a href="#">
-                        <div class="pull-left">
-                          <img src="https://static1.squarespace.com/static/56d3a5a486db43f4f777b2f6/t/56d3d82e8259b53968383d8e/1456724022495/27ef868543abf9c4e16439c1aeb8f0bd.jpg" class="img-circle" alt="User Image">
-                        </div>
-                        <h4>
-                          Andrea
-                          <small><i class="fa fa-clock-o"></i> fecha</small>
-                        </h4>
-                        <p>es un gran lugar</p>
-                      </a>
-                    </li>
+         <!-- Messages: style can be found in dropdown.less-->
+        
+
+
+
+<?php
+$cont = 0;
+$id_usuario = $row['id_usuarios'];
+$query = "SELECT DISTINCT us.id_usuarios, us.nombre, us.foto , cm.* ,lg.id_lugar 
+FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario  and cm.estado = 'inactivo'  and cm.id_lugar = lg.id_lugar  and lg.id_usuario = $id_usuario ";
+  $resultados = $conexion->query($query);
+
+  while($rowsts = $resultados-> fetch_assoc()){
+   $cont++;
+
+  }
+
+  
+?>
+<li class="dropdown messages-menu">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+  <i class="fa fa-envelope-o"></i>
+    <span class="label label-success"> <?php 
+     
+    echo  $cont;
+    ?></span>
+</a>
+<ul class="dropdown-menu">
+  <li class="header">You have  messages</li>
+  <li>
+    <!-- inner menu: contains the actual data -->
+    <ul class="menu">
+<?php
+         $id_usuario = $row['id_usuarios'];
+         $query = "SELECT DISTINCT us.id_usuarios, us.nombre, us.foto , cm.* ,lg.id_lugar 
+         FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario  and cm.estado = 'inactivo'  and cm.id_lugar = lg.id_lugar  and lg.id_usuario = $id_usuario ";
+           $resultado = $conexion->query($query);         
+                 while($rowst = $resultado-> fetch_assoc()){
+                  
+                  $cont++;
+                   ?>
+
+                   
+<li><!-- start message -->
+<a href="php\modificar\o-activos.php?id= <?php echo $rowst['id_comentario'] ?> &lugar= <?php echo $rowst['id_lugar']  ?>">
+  <div class="pull-left">
+    <img src="data:imagine/jpg;base64,<?php echo base64_encode($rowst['foto']);  ?>" class="img-circle" alt="User Image">
+  </div>
+  <h4>
+  <?php  echo $rowst['nombre']; ?>
+    <small><i class="fa fa-clock-o"></i>  <?php  echo $rowst['fecha']; ?></small>
+  </h4>
+  <p> <?php  echo $rowst['mensaje']; ?></p>
+</a>
+</li>
+
                     <!-- end message -->
-                    <li>
-                      <a href="#">
-                        <div class="pull-left">
-                          <img src="https://static1.squarespace.com/static/56d3a5a486db43f4f777b2f6/t/56d3d82e8259b53968383d8e/1456724022495/27ef868543abf9c4e16439c1aeb8f0bd.jpg" class="img-circle" alt="User Image">
-                        </div>
-                        <h4>
-                          Marta
-                          <small><i class="fa fa-clock-o"></i> fecha</small>
-                        </h4>
-                        <p>ese lugar no me gusta</p>
-                      </a>
-                    </li>
+                    <?php } ?>
                   
                   </ul>
                 </li>
