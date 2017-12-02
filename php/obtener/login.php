@@ -22,7 +22,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
 
       $_SESSION['id'] = $id;
 
-      $extra = '..\..\perfil.php';
+      $extra = '..\..\perfil3.php';
       
       header("Location: $extra");
  

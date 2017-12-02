@@ -71,7 +71,7 @@ if($result){
         </script>';
  
  
-      $extra = '..\..\perfil.php';
+      $extra = '..\..\perfil3.php';
        
          header("Location: $extra ");
     }else{

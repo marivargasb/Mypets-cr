@@ -121,6 +121,7 @@ require_once('app/ini.php');
                                 <div class="card-footer">
                                <a href="#" data-toggle="modal" data-target="#t_and_c_m">     <button class="btn btn-danger btn-lg" >  ENTRAR </button></a>
                                <a href="#" data-toggle="modal" data-target="#t_and_c_m2">       <button class="btn btn-success btn-lg"  >REGISTRO</button> </a>
+                           
                                 </div>
                             </div>
                    
@@ -129,19 +130,25 @@ require_once('app/ini.php');
             
                 <div class="social-auth-links text-center">
                   <p>- OR -</p>
-                  <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
-                    Facebook</a>
-                  <a href="php\obtener\dato.php" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
+
+                  <?php if ($fbauth->isLogin()): ?>
+                  
+                  <a href="php\obtener\cerrar.php"
+                   class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> logout Facebook</a>
+                  <?php else: ?>
+                  <a href="<?php echo $fbauth->getAuthUrl(); ?>"
+                   class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using Facebook</a>
+                  <?php endif; ?>
+                  
+                  <a href="" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
                     Google+</a>
+
+
                 </div>
             
                 <a href="olvido.php" class="text-center">OLVIDE MI CONTRASENA </a>
 
-                <?php if ($fbauth->isLogin()): ?>
-<a href="logout.php">Cerrar Sesion</a> 
-<?php else: ?>
-<a href="<?php echo $fbauth->getAuthUrl(); ?>">Iniciar Sesion </a>
-<?php endif; ?>
+ 
               </div>
               <!-- /.form-box -->
             </div>

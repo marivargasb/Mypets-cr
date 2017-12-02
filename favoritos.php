@@ -233,7 +233,7 @@ FROM lugar lg, favoritos fv WHERE lg.id_lugar = fv.id_lugar and fv.id_usuario = 
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="perfil.php" class="btn btn-default btn-flat">Profile</a>
+                  <a href="perfil3.php" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat">Sign out</a>
@@ -285,7 +285,7 @@ FROM lugar lg, favoritos fv WHERE lg.id_lugar = fv.id_lugar and fv.id_usuario = 
         <li><a href="mypetscr.php"><i class="fa fa-share text-red"></i> <span>Regresar</span></a></li>
         <li><a href="inicio.php"><i class="fa fa-home text-yellow"></i> <span>inicio</span></a></li>
         <li><a href="favoritos.php"><i class="fa fa-th  text-aqua"></i> <span>Favoritos</span></a></li>
-        <li><a href="perfil.php"><i class="fa fa-cog text-red"></i> <span>Editar Perfil</span></a></li>
+        <li><a href="perfil3.php"><i class="fa fa-cog text-red"></i> <span>Editar Perfil</span></a></li>
         <li><a href="sobre.php"><i class="fa fa-file text-yellow"></i> <span>Sobre Notros</span></a></li>
         <li><a href="php\obtener\cerrar.php"><i class="fa fa-sign-out text-aqua"></i> <span>Cerrar Sesion</span></a></li>
 

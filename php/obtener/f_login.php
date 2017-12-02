@@ -1,34 +1,9 @@
 <?php
 
-class FacebookAuth
-{
+require_once('app/ini.php');
+ include 'C:\xampp\htdocs\Mypetscr\php\cn.php';
 
-protected $facebook;
-protected $facebookUrl = "http://localhost/Mypetscr/perfil.php";
-
-public function __construct(Facebook\Facebook $facebook){
-$this->facebook = $facebook;
-
-}
-
-public function getHelper(){
-return $this->facebook->getRedirectLoginHelper();
-
-}
-
-public function getAuthUrl(){
-    return $this->getHelper()->getLoginUrl($this->facebookUrl,array('email'));
-}
-
-public function isLogin(){
-
-return isset($_SESSION['id']);
-
-}
-
-
-public function  login(){
-    include 'C:\xampp\htdocs\Mypetscr\php\cn.php';
+ 
     try{
         $response = $this->facebook->get('/me?fields=id,first_name,last_name,email,picture', $this->
        getHelper()->getAccessToken());
@@ -40,6 +15,7 @@ public function  login(){
       //verificar usuario
 
       if ($id_facebook!=0){
+
 
 
        //comprobar si el usuario exite 
@@ -68,6 +44,7 @@ public function  login(){
                  $contrasena=  '1234';
                  $foto =  $usuario['picture'] ;
 
+
                 //insertar en la base de datos
                 $insertar = "INSERT INTO usuarios(id_usuarios, nombre, apellido, correo, contrasena,  foto, estado, tipo) VALUES  ('$id_facebook','$nombre','$apellido', '$correo' ,'$contrasena',' $foto ' ,'A','facebook' )";
                 
@@ -91,6 +68,7 @@ public function  login(){
              }
 
 
+
       }
 
       
@@ -98,10 +76,10 @@ public function  login(){
     
     
     }
-    return  $this->getHelper()->getLoginUrl($this->facebookUrl,array('email'));
+    $extra = '..\..\perfil3.php';
     
-    }
-
-}
+    header("Location: $extra");
+    
 
 ?>
+

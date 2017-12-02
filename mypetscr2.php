@@ -290,7 +290,7 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
      <!-- Menu Footer-->
      <li class="user-footer">
        <div class="pull-left">
-         <a href="perfil.php" class="btn btn-default btn-flat">Profile</a>
+         <a href="perfil3.php" class="btn btn-default btn-flat">Profile</a>
        </div>
        <div class="pull-right">
          <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat">Sign out</a>

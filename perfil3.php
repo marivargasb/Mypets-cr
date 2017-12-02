@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Mi Lugar</title>
+  <title>Eliminar</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -44,51 +44,57 @@
 
   <header class="main-header">
 
-
   <?php
+ // session_start();
 
 include 'C:\xampp\htdocs\Mypetscr\php\cn.php';
 
 
 session_start();
+$contado = 0;
 if(isset($_SESSION['id'])){
-  
-    $id = $_SESSION['id'];
 
-   
-  
-  }else{
-  
-    header("Location: registro.php");
-  
-  }
+  $id = $_SESSION['id'];
+
+ 
+
+}else{
+
+  header("Location: registro.php");
+
+}
+
+//$id= $_GET['id'];
 
 
+//if($_SESSION["id"] !=''){
 $query = "SELECT * FROM usuarios WHERE id_usuarios = '$id' ";
 $resultado = $conexion->query($query);
 if($row = $resultado-> fetch_assoc()){
+ 
+    
+    
+    
 ?>
-
-
-
+  
     <!-- Logo -->
     <a href="mypetscr.php" class="logo">
-    <!-- mini logo for sidebar mini 50x50 pixels -->
-    <span class="logo-mini"><b>C</b>R</span>
-    <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><b>Mypets</b>CR</span>
-  </a>
-  <!-- Header Navbar: style can be found in header.less -->
-  <nav class="navbar navbar-static-top">
-    <!-- Sidebar toggle button-->
-    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-      <span class="sr-only">Toggle navigation</span>
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>C</b>R</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Mypets</b>CR</span>
     </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
 
-    <div class="navbar-custom-menu">
-      <ul class="nav navbar-nav">
-        
-           <!-- Messages: style can be found in dropdown.less-->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          
+        <!-- Messages: style can be found in dropdown.less-->
         
 
 
@@ -153,209 +159,211 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
               </ul>
             </li>
 
-        <!-- Notifications: style can be found in dropdown.less -->
-        <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa  fa-heart"></i>
-      
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">Favoritos recientes</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
+          <!-- Notifications: style can be found in dropdown.less -->
+          <li class="dropdown messages-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa  fa-heart"></i>
+        
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header">Favoritos recientes</li>
+                <li>
+                  <!-- inner menu: contains the actual data -->
+                  <ul class="menu">
 
 
-                  
-                 <?php
+                    
+                   <?php
 
 
 $id_usuario = $row['id_usuarios'];
 $query = "SELECT  lg.id_lugar , lg.nombre, lg.foto , lg.descripcion, lg.categoria , lg.provincia , fv.id_lugar, fv.id_usuario , fv.id_favoritos
 FROM lugar lg, favoritos fv WHERE lg.id_lugar = fv.id_lugar and fv.id_usuario = $id_usuario  ORDER BY  id_usuario  DESC LIMIT 5";
 
-                  $resultado = $conexion->query($query);
-               while($rows = $resultado-> fetch_assoc()){
+                    $resultado = $conexion->query($query);
+                 while($rows = $resultado-> fetch_assoc()){
 
-                 ?>
-
-
-                  <li><!-- start message -->
-                    <a href="lugar.php">
-                      <div class="pull-left">
-                        <img src="data:imagine/jpg;base64,<?php echo base64_encode($rows['foto']);  ?>" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                      <?php  echo $rows['nombre']; ?> 
-                        <small><i class="fa fa-clock-o"></i> fecha</small>
-                      </h4>
-                      <p>  <?php  echo $rows['categoria']; ?> , <?php  echo $rows['provincia']; ?></p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-
-                  <?php } ?>
-              
-    
-                </ul>
-              </li>
-              <li class="footer"><a href="#"> Mensajes</a></li>
-            </ul>
-          </li>
- 
-        <!-- User Account: style can be found in dropdown.less -->
-        <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?>" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php  echo $row['nombre']; ?></span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?>" class="img-circle" alt="User Image">
-
-                <p>
-                <?php  echo $row['nombre']; ?>
-                  <small> miembro desde: <?php  echo $row['nacimiento']; ?></small>
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="favoritos.php">Favoritos</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="form_lugar.php">Editar</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="sobre.php">Sobre Nosotros</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="perfil3.php" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-        <!-- Control Sidebar Toggle Button -->
-        <li>
-          <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</header>
-<!-- Left side column. contains the logo and sidebar -->
+                   ?>
 
 
+                    <li><!-- start message -->
+                      <a href="lugar.php">
+                        <div class="pull-left">
+                          <img src="data:imagine/jpg;base64,<?php echo base64_encode($rows['foto']);  ?>" class="img-circle" alt="User Image">
+                        </div>
+                        <h4>
+                        <?php  echo $rows['nombre']; ?> 
+                          <small><i class="fa fa-clock-o"></i> fecha</small>
+                        </h4>
+                        <p>  <?php  echo $rows['categoria']; ?> , <?php  echo $rows['provincia']; ?></p>
+                      </a>
+                    </li>
+                    <!-- end message -->
 
-
-<aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?>" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p> <?php  echo $row['nombre']; ?></p>
-                </div>
-      </div>
-      <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
+                    <?php } ?>
+                
       
+                  </ul>
+                </li>
+                <li class="footer"><a href="#"> Mensajes</a></li>
+              </ul>
+            </li>
    
-        <li class="header">LABELS</li>
-        <li><a href="mypetscr.php"><i class="fa fa-share text-red"></i> <span>Regresar</span></a></li>
-        <li><a href="inicio.php"><i class="fa fa-home text-yellow"></i> <span>inicio</span></a></li>
-        <li><a href="favoritos.php"><i class="fa fa-th  text-aqua"></i> <span>Favoritos</span></a></li>
-        <li><a href="perfil3.php"><i class="fa fa-cog text-red"></i> <span>Editar Perfil</span></a></li>
-        <li><a href="sobre.php"><i class="fa fa-file text-yellow"></i> <span>Sobre Notros</span></a></li>
-        <li><a href="php\obtener\cerrar.php"><i class="fa fa-sign-out text-aqua"></i> <span>Cerrar Sesion</span></a></li>
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?>" class="user-image" alt="User Image">
+                <span class="hidden-xs"><?php  echo $row['nombre']; ?></span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                  <img src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?>" class="img-circle" alt="User Image">
+  
+                  <p>
+                  <?php  echo $row['nombre']; ?>
+                    <small> miembro desde: <?php  echo $row['nacimiento']; ?></small>
+                  </p>
+                </li>
+                <!-- Menu Body -->
+                <li class="user-body">
+                  <div class="row">
+                    <div class="col-xs-4 text-center">
+                      <a href="favoritos.php">Favoritos</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="form_lugar.php">Editar</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="sobre.php">Sobre Nosotros</a>
+                    </div>
+                  </div>
+                  <!-- /.row -->
+                </li>
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a href="perfil3.php" class="btn btn-default btn-flat">Profile</a>
+                  </div>
+                  <div class="pull-right">
+                    <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat">Sign out</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
 
 
 
-        <li class="treeview">
-     <a href="#">
-       <i class="fa fa-files-o text-red "></i> <span>Configuracion</span>
-       <span class="pull-right-container">
-         <i class="fa fa-angle-left pull-right"></i>
-       </span>
-     </a>
-        <?php
+
+  <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?>" class="img-circle" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <p> <?php  echo $row['nombre']; ?></p>
+                  </div>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                  </button>
+                </span>
+          </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+        
+     
+          <li class="header">LABELS</li>
+          <li><a href="mypetscr.php"><i class="fa fa-share text-red"></i> <span>Regresar</span></a></li>
+          <li><a href="inicio.php"><i class="fa fa-home text-yellow"></i> <span>inicio</span></a></li>
+          <li><a href="favoritos.php"><i class="fa fa-th  text-aqua"></i> <span>Favoritos</span></a></li>
+          <li><a href="perfil3.php"><i class="fa fa-cog text-red"></i> <span>Editar Perfil</span></a></li>
+          <li><a href="sobre.php"><i class="fa fa-file text-yellow"></i> <span>Sobre Notros</span></a></li>
+          <li><a href="php\obtener\cerrar.php"><i class="fa fa-sign-out text-aqua"></i> <span>Cerrar Sesion</span></a></li>
+  
+
+
+          <li class="treeview">
+       <a href="#">
+         <i class="fa fa-files-o text-red "></i> <span>Configuracion</span>
+         <span class="pull-right-container">
+           <i class="fa fa-angle-left pull-right"></i>
+         </span>
+       </a>
+          <?php
 
 $verificar_usuario = mysqli_query($conexion, "SELECT * FROM lugar WHERE id_usuario = $id " );
 
 
 if(mysqli_num_rows($verificar_usuario)> 0){
-
-?>
-
-     <ul class="treeview-menu">
-       <li><a href="form_lugar.php"><i class="fa fa-circle-o"></i> Editar Pagina</a></li>
-       <li><a href="lugar.php"><i class="fa fa-circle-o"></i> Pagina Online</a></li>
-     </ul>
-  
+ 
+  ?>
+ 
+       <ul class="treeview-menu">
+         <li><a href="form_lugar.php"><i class="fa fa-circle-o"></i> Editar Pagina</a></li>
+        
+       </ul>
+    
 
 <?php
 }else{
 ?>
 
 
-     <ul class="treeview-menu">
-       <li><a href="form_lugar2.php"><i class="fa fa-circle-o"></i> ACTIVAR PAGINA</a></li>
+       <ul class="treeview-menu">
+         <li><a href="form_lugar2.php"><i class="fa fa-circle-o"></i> ACTIVAR PAGINA</a></li>
+      
+       </ul>
     
-     </ul>
-  
 
 <?php  
 }
 ?>
 
 </li>
-      
-  
-    </section>
-  </aside>
+        
+    
+      </section>
+    </aside>
+
+
+
+
 
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        CONFIGURACION
-        <small>Control panel</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Lugar</li>
-      </ol>
-    </section>
-
-
-
+        <h1>
+         Perfil
+          <small> mis datos</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li><a href="#">perfil</a></li>
     
+        </ol>
+      </section>
+  
 
     <!-- Main content -->
    <section class="content"> 
@@ -364,198 +372,250 @@ if(mysqli_num_rows($verificar_usuario)> 0){
    
       <div class="row">
         
-
+   
+  
       <div class="row">
 
-      
+
+          <section class="col-lg-12 connectedSortable">
+
+              <div class="box-body">
+          
+      <div class="row">
+          <div class="col-xs-12">
+            <!-- interactive chart -->
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <i class="fa fa-user"></i>
+  
+       
+  
+                <div class="box-tools pull-right">
+                  perfil
+                  <div class="btn-group" id="realtime" data-toggle="btn-toggle"> </div>
+                </div>
+              </div>
+              <div class="box box-widget widget-user">
+                
+              
+
+                
+                  <div class="widget-user-header bg-black" style="background: url('http://3.bp.blogspot.com/-9iSQLXXGvRU/VTk1FIei5vI/AAAAAAAABlI/oibVoPwVTYo/s1600/lago-montana.jpg') center center;">
+                    <h3 class="widget-user-username"><?php  echo $row['nombre']; ?></h3>
+
+
+
+
+                  </div>
+                  <div class="widget-user-image">
+                    <img class="img-circle " src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?>" alt="User Avatar">
+                  </div>
+                  <div class="box-footer">
+                    <div class="row">
+                      <div class="col-sm-4 border-right">
+                        <div class="description-block">
+                          <h5 class="description-header">fecha</h5>
+                          <span class="description-text">  <?php  echo $row['nacimiento']; ?></span>
+                        </div>
+                        <!-- /.description-block -->
+                      </div>
+                      <!-- /.col -->
+                      <div class="col-sm-4 border-right">
+                        <div class="description-block">
+                          <h5 class="description-header"> nombre </h5>
+                          <span class="description-text">  <?php  echo $row['nombre']; ?></span>
+                        </div>
+                        <!-- /.description-block -->
+                      </div>
+                      <!-- /.col -->
+                      <div class="col-sm-4">
+                        <div class="description-block">
+                          <h5 class="description-header">correo</h5>
+                          <span class="description-text"> <?php  echo $row['correo']; ?></span>
+                        </div>
+                        <!-- /.description-block -->
+                      </div>
+                      <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                  </div>
+
+              </div>
+              <!-- /.box-body-->
+            </div>
+            <!-- /.box -->
+  
+          </div>
+          <!-- /.col -->
+        </div>
+ </div>
+
+
+            
+          </section>
+
+
 
         <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
+        <section class="col-lg-4 connectedSortable">
          
-         
-         
-          <!-- quick email widget -->
         
-              <div class="box box-info">
-                <div class="box-header">
-                  <i class="fa fa-envelope"></i>
-                  <h3 class="box-title">CONFIGURACION DEL LUGAR</h3>
-                  <!-- tools box -->
-                 
-                  <!-- /. tools -->
+            <div class="box-body">
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                  <img class="profile-user-img img-responsive img-circle" src="https://www.planetacurioso.com/wp-content/uploads/2014/04/gato-triste-.jpg" alt="User profile picture">
+    
+                  <h3 class="profile-username text-center"> NO ESTAS AGUSTO</h3>
+    
+                  <p class="text-muted text-center">ELIMINA TU CUENTA</p>
+    
+                  <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                      <b>Por que?</b> <a class="pull-right">dinos si la pagina tiene errores?</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b> Agregar </b> <a class="pull-right">quieres mas? dinos</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b> Usuarios</b> <a class="pull-right">usuarios inadecuados?</a>
+                    </li>
+                  </ul>
+    
+                  <a href="eliminar.php" class="btn btn-danger btn-block"><b>ELIMINAR CUENTA</b></a>
                 </div>
-                <div class="box-body">
-
-             
-
-                     <form action="php\guardar\g-lugares.php?id= <?php echo $row['id_usuarios']  ?>" method="post" enctype="multipart/form-data">
-              
-                  
-                          <div class="form-group">
-                            <label for="exampleInputEmail1">Nombre del negocio</label>
-                            <input type="text" class="form-control" name ="nombre" id="nombre" aria-describedby="emailHelp" placeholder="nombre"  
-                            <small id="emailHelp" class="form-text text-muted">Este sera el nombre que veran los usuarios</small>
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleInputPassword1">Correo electronico</label>
-                            <input type="email" class="form-control"    name ="correo"  id="correo" placeholder="ejemplo: algo@ejemplo.com" >
-                          </div>
-                          
-                          <div class="form-group">
-                            <label for="exampleInputPassword1">Pagina Web</label>
-                            <input type="text" class="form-control"    name ="web"  id="web" placeholder="ejemplo: algo@ejemplo.com"  >
-                          </div>
-                          
-                          <div class="form-group">
-                            <label for="exampleInputPassword1">Telefono</label>
-                            <input type="text" class="form-control"     name ="telefono" id="telefono" placeholder="ejemplo: 506+8888888"  >
-                          </div>
-                          
-                          <div class="form-group">
-                            <label for="exampleSelect1">Categoria</label>
-                            <select class="form-control"    name ="categoria"  id="categoria"  >
-                              <option>Hotel</option>
-                              <option>Restaurante</option>
-                              <option>Salud</option>
-                              <option>Aire Libre</option>
-                              <option>Estetica</option>
-                            </select>
-                          </div>
-                           <div class="form-group">
-                            <label for="exampleSelect1">Provincia</label>
-                            <select class="form-control"    name ="provincia"  id="provincia" >
-                              <option>Nicoya</option>
-                              <option>Guanacaste</option>
-                              <option>Pultarenas</option>provincia
-                              <option>San Jose</option>
-                              <option>Alajuela</option>
-                               <option>Cartago</option>
-                                <option>Limon</option>
-                            </select>
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleTextarea">Direccion</label>
-                            <textarea class="form-control"    name ="direccion"  id="direccion" rows="3"  ></textarea>
-                          </div>
-                          
-                          
-                            <div class="form-group">
-                            <label for="exampleTextarea">Descripcion</label>
-                            <textarea class="form-control"    name ="descripcion"  id="descripcion" rows="3"  ></textarea>
-                          </div>
-                          
-                          <div class="form-group">
-                            <label for="exampleInputFile">Fotos</label>
-                            <input type="file" class="form-control-file"    name ="foto"  id="foto" aria-describedby="fileHelp">
-                            <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
-                          </div>
-                          
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input">
-                              ACEPTO LAS CONDICIONES
-                            </label>
-                          </div>
-                       
-
-
-  <button  id="btnGuardar"  type="submit"   class="btn btn-danger" >Agregar</button>
-
-
-
-                   
-                  </form>
-                </div>
-              
+                <!-- /.box-body -->
               </div>
 
-   
+
+         </div>
+
      
 
         </section>
-
-              <?php
-             }
-            ?>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
         
         
-        <section class="col-lg-5 connectedSortable">
+        <section class="col-md-8 connectedSortable">
 
-       
-       
-       
-       
-       <!-- Calendar -->
-     <div class="box box-solid bg-green-gradient">
-        <div class="box-header">
-          <i class="fa fa-calendar"></i>
-          <h3 class="box-title">Calendar</h3>
-          <!-- tools box -->
-          <div class="pull-right box-tools">
-            <!-- button with a dropdown -->
-            <div class="btn-group">
-              <button class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-              <ul class="dropdown-menu pull-right" role="menu">
-                <li><a href="#">Add new event</a></li>
-                <li><a href="#">Clear events</a></li>
-                <li class="divider"></li>
-                <li><a href="#">View calendar</a></li>
-              </ul>
-            </div>
-            <button class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-          </div><!-- /. tools -->
-        </div><!-- /.box-header -->
-        <div class="box-body no-padding">
-          <!--The calendar -->
-          <div id="calendar" style="width: 100%"></div>
-        </div><!-- /.box-body -->
-        <div class="box-footer text-black">
-          <div class="row">
-            <div class="col-sm-6">
-              <!-- Progress bars -->
+
+            <div class="box-body">
+
+
+
     
-            
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div>
-      </div><!-- /.box -->
+                <div class="nav-tabs-custom">
+                    
+                    
+                     <ul class="nav nav-tabs">
+                       <li class="active"><a href="#activity" data-toggle="tab">Mis datos</a></li>
+                       <li><a href="#timeline" data-toggle="tab">Cambio </a></li>
+                   
+                     </ul>
+                     <div class="tab-content">
+                    
+                    
+                    
+                    
+                       <div class="active tab-pane" id="activity">
+                    
+                           <form  action="php\modificar\o-perfil3.php?id= <?php echo $row['id_usuarios']  ?>" method="POST" class="form" enctype="multipart/form-data">
+                               <div class="form-group">
+                                 <label for="exampleInputEmail1">Nombre </label>
+                                 <input type="text" class="form-control"  name="nombre" id="nombre" aria-describedby="emailHelp" value="<?php echo $row['nombre'] ?>">
+                               
+                               </div>
+                               <div class="form-group">
+                                 <label for="exampleInputPassword1">Apellido</label>
+                                 <input type="text" class="form-control" name="apellido" id="apellido" value="<?php echo $row['apellido'] ?>">
+                               </div>
+                               
+                             <div class="form-group ">
+                               <label for="example-date-input" class="col-2 col-form-label">Fecha de nacimiento</label>
+                               <div class="col-10">
+                                 <input class="form-control" type="text" value="<?php echo $row['nacimiento'] ?>" name="nacimiento"id="nacimiento">
+                               </div>
+                             </div>
+                             
+                               <div class="form-group">
+                                 <label for="exampleInputFile">Fotos de perfil</label>
+                                 <img  src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?>"  class=" col-lg-2 col-sm-3 col-xs-3 col-md-2 img-rounded " >
+                                 <input type="file" class="form-control-file" name="foto" value="<?php echo base64_encode($row['foto']);  ?>" >
+                                 <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                               </div>
+                             
+                               <br/>
+                               <br/>
+
+                               <div class="form-check">
+                                 <label class="form-check-label">
+                                   <input type="checkbox" class="form-check-input">
+                                   ACEPTO LAS CONDICIONES
+                                 </label>
+                               </div>
+                               <button type="submit" id="btnGuardar" class="btn btn-danger">Agregar</button>
+                               
+                              
+                             </form>
+                       
+                         <!-- /.post -->
+                       </div>
+                       <!-- /.tab-pane -->
 
 
 
-              <!-- Map box -->
-              <div class="box box-solid bg-light-blue-gradient">
-                <div class="box-header">
-                  <!-- tools box -->
-                  <div class="pull-right box-tools">
-                    <button class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip" title="Date range"><i class="fa fa-calendar"></i></button>
-                    <button class="btn btn-primary btn-sm pull-right" data-widget='collapse' data-toggle="tooltip" title="Collapse" style="margin-right: 5px;"><i class="fa fa-minus"></i></button>
-                  </div><!-- /. tools -->
+                       <div class="tab-pane" id="timeline">
+                       <form  action="php\modificar\o-contrasena.php?id= <?php echo $row['id_usuarios']  ?>" method="POST" class="form">
+                       <h4 class="card-title text-center ">DECEA CAMBIAR SU CONTRASEÑA </h4>
+                      
+                       <div class="form-group">
+                         <label for="exampleInputEmail1"> Actual Contraseña</label>
+                         <input type="password" class="form-control"  name="pass" id="pass" aria-describedby="emailHelp">
 
-                  <i class="fa fa-map-marker"></i>
-                  <h3 class="box-title">
-                    Visitors
-                  </h3>
-                </div>
-                <div class="box-body">
-                  <div id="world-map" style="height: 250px; width: 100%;"></div>
-                </div><!-- /.box-body-->
-                <div class="box-footer no-border">
-                  <div class="row">
-               <!-- ./col -->
-                  </div><!-- /.row -->
-                </div>
+                           </div>
+                       
+                       <div class="form-group">
+                         <label for="exampleInputPassword1">Nueva Contraseña</label>
+                         <input type="text" class="form-control" name="con1" id="con1" >
+                       </div>
+                 
+                         
+                       <div class="form-group">
+                         <label for="exampleInputPassword1">Nueva Contraseña</label>
+                         <input type="text" class="form-control" name="con2" id="con2" >
+                       </div>
+                    
+                     
+                       <button type="submit" id="btnGuardar" class="btn btn-danger">Agregar</button>
+                       
+                      
+                     </form>
               </div>
-              <!-- /.box -->
+     
+                  
+                       <!-- /.tab-pane -->
+                     </div>
+                     <!-- /.tab-content -->
+                   </div>
 
 
-       
-       
 
-        </section>
-        <!-- right col -->
+                  </section>
+
+
+  <?php 
+}
+?>
+
+
+
+
+
+              </div>
+      
+  
+
+             <!-- right col -->
       </div>
       <!-- /.row (main row) -->
 
@@ -567,7 +627,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
   <!-- /.content-wrapper -->
 
 
- <!--Footer-->
+  <!--Footer-->
  <footer class="footer1">
  <div class="footer">
      <div class="container">
