@@ -591,7 +591,7 @@ while($rows = $resultado-> fetch_assoc()){
                                     
                                         <div class="checkbox">
                                             <label class="te" >
-                                                <input type="checkbox" class="flat-red" checked  name="provincia[]" value="Nicoya">Nicoya</label>
+                                                <input type="checkbox" class="flat-red" checked  name="provincia[]" value="Heredia">Heredia</label>
                                         </div>
                                         <div class="checkbox">
                                             <label class="te"  >

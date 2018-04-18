@@ -10,8 +10,6 @@ include 'C:\xampp\htdocs\Mypetscr\php\cn.php';
 $id= $_GET['id'];
 
 
-
-
 /*   lugar     */
 $verificar_lugar = mysqli_query($conexion, " SELECT * FROM `lugar` WHERE id_usuario = '$id' " );
    
@@ -84,6 +82,13 @@ if($result){
     } 
 
 
-}
+}else{
+
+    echo '<script> alert("Cliente no tiene un lugar registrado");
+    window.history.go(-1);
+    </script>';
+
+  
+} 
 
   

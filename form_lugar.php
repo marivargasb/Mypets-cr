@@ -421,7 +421,7 @@ if($rows = $resultado-> fetch_assoc()){
                            <div class="form-group">
                             <label for="exampleSelect1">Provincia</label>
                             <select class="form-control"    name ="provincia"  id="provincia"  value=" <?php  echo $rows['provincia']; ?>">
-                              <option>Nicoya</option>
+                              <option>Heredia</option>
                               <option>Guanacaste</option>
                               <option>Pultarenas</option>provincia
                               <option>San Jose</option>
@@ -469,7 +469,7 @@ if($rows = $resultado-> fetch_assoc()){
                           </div>
         
                               <button  id="btnGuardar"  type="submit"   class="btn btn-danger" >EDITAR</button>
- 
+                              <a href="php\borrar\b-lugar.php?id= <?php echo $id ?> ">  <button class="btn btn-danger "  type="button"  > ELIMINAR </button> </a>
                    
                   </form>
                 </div>
