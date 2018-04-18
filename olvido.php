@@ -178,7 +178,7 @@
 
 
 
-   <!-- inicio de seccion-->
+   <!-- index de seccion-->
    
   
       
@@ -226,7 +226,7 @@
                 <div class="footer-desc text-center">
                     <img src="http://superdevresources.com/images/super-dev-resources-logo.png" width="82" height="48" alt="">
                     <p>
-                        <a href="/" rel="home" title="Super Dev Resources">Super Dev Resources</a> is a popular blog for finding<br>awesome free app and web development resources. <a href="/about/">Learn More</a>
+                        <a href="/" rel="home" title="Super Dev Resources">Nuestro propocito es crear una red en donde todos podamos compartir<br>las mejores aventuras con tu mejor amigo <a href="sobre.php">Leer mas</a>
                     </p>
                 </div>
             </div>
@@ -267,20 +267,13 @@
                 </ul>
            
 
-
-            <nav class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-                <div class="input-group input-group-md">
-                  <input type="text" class="form-control" placeholder="Email Address">
-                  <span class="input-group-addon">Subscribe</span>
-                </div>
-            </nav>
         </div> <!--/.row--> 
     </div> <!--/.container--> 
 </div> <!--/.footer-->
 
 <div class="footer-bottom">
     <div class="container">
-        <div class="pull-left"> Copyright © <a href="">Rizwan Akram</a>.  All right reserved.</div>
+           <div class="pull-left"> Copyright © <a href="">Mypetscr</a>.  todos los derechos reservados.</div>
     
     </div>
 </div> <!--/.footer-bottom--> 
@@ -307,7 +300,7 @@
       
       
       
-      <!-- Home tab content -->
+      <!-- Inicio tab content -->
       <div class="tab-pane" id="control-sidebar-home-tab">
         <h3 class="control-sidebar-heading">Recent Activity</h3>
         <ul class="control-sidebar-menu">
@@ -327,7 +320,7 @@
               <i class="menu-icon fa fa-user bg-yellow"></i>
 
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                <h4 class="control-sidebar-subheading">Frodo Updated His Perfil</h4>
 
                 <p>New phone +1(800)555-1234</p>
               </div>

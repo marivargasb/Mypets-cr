@@ -6,6 +6,8 @@ include 'C:\xampp\htdocs\Mypetscr\php\cn.php';
 
 $id = $_GET['id'];
 
+
+
 $nombre = $_POST["nombre"];
 $correo = $_POST["correo"];
 $web = $_POST["web"];
@@ -13,6 +15,8 @@ $telefono = $_POST["telefono"];
 $categoria = $_POST["categoria"];
 $provincia = $_POST["provincia"];
 $direccion = $_POST["direccion"];
+$latitud = $_POST["latitud"];
+$longitud= $_POST["longitud"];
 $descripcion = $_POST["descripcion"];
 $foto =  addslashes(file_get_contents($_FILES['foto']['tmp_name']));
 $estado = $_POST["estado"];
@@ -31,7 +35,7 @@ exit;
 }else{
 
 
-$insertar = "INSERT INTO lugar( nombre, correo, web, telefono, categoria, provincia, direccion, descripcion, foto, estado, id_usuario) VALUES  ('$nombre', '$correo', '$web', '$telefono', '$categoria', '$provincia', '$direccion', '$descripcion', '$foto', 'S', '$id')";
+$insertar = "INSERT INTO lugar( nombre, correo, web, telefono, categoria, provincia, direccion, descripcion, foto, estado, id_usuario, latitud , longitud ) VALUES  ('$nombre', '$correo', '$web', '$telefono', '$categoria', '$provincia', '$direccion', '$descripcion', '$foto', 'S', '$id' , '$latitud', '$longitud')";
 
 
 

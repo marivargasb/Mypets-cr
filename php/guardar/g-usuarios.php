@@ -12,6 +12,7 @@ $apellido2 = $_POST["apellido2"];
 $correo = $_POST["correo"];
 $contrasena = $_POST["contrasena"];
 $contrasena2 = $_POST["contrasena2"];
+$foto =  addslashes(file_get_contents($_FILES['C:\xampp\htdocs\Mypetscr\img']['tmp_name']));
 /*
 $nacimiento = $_POST["nacimiento"];
 $foto =  addslashes(file_get_contents($_FILES['foto']['tmp_name']));
@@ -34,7 +35,7 @@ exit;
 }else{
 
 
-$insertar = "INSERT INTO usuarios( nombre, apellido, apellido2, correo, contrasena,nacimiento, foto, estado, tipo) VALUES  ('$nombre','$apellido', '$apellido2','$correo' ,'$contrasena','null' ,'null', 'A','N' )";
+$insertar = "INSERT INTO usuarios( nombre, apellido, apellido2, correo, contrasena, foto, estado, tipo) VALUES  ('$nombre','$apellido', '$apellido2','$correo' ,'$contrasena','$foto' , 'A','N' )";
 
 // EJECUTAR CONSULTA
 $resultado = mysqli_query($conexion, $insertar);

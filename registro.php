@@ -104,7 +104,7 @@ require_once('app/ini.php');
               </div>
             
               <div class="register-box-body">
-                <p class="login-box-msg">Register a new membership</p>
+                <p class="login-box-msg">Registrar un nuevo miembro </p>
             
                         
                             <div class="card card-inverse card-info">
@@ -129,19 +129,18 @@ require_once('app/ini.php');
                
             
                 <div class="social-auth-links text-center">
-                  <p>- OR -</p>
+                  <p>- O -</p>
 
                   <?php if ($fbauth->isLogin()): ?>
                   
                   <a href="php\obtener\cerrar.php"
-                   class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> logout Facebook</a>
+                   class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Cerrar Sesion de Facebook</a>
                   <?php else: ?>
                   <a href="<?php echo $fbauth->getAuthUrl(); ?>"
-                   class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using Facebook</a>
+                   class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Inicio de Sesion con Facebook</a>
                   <?php endif; ?>
                   
-                  <a href="" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
-                    Google+</a>
+             
 
 
                 </div>
@@ -174,7 +173,7 @@ require_once('app/ini.php');
 
 
 
-   <!-- inicio de seccion-->
+   <!-- index de seccion-->
    
    <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
@@ -192,24 +191,24 @@ require_once('app/ini.php');
         
         <form action="php\obtener\login.php" method="POST" role="form">
           <fieldset>
-            <h2>Please Sign In</h2>
+            <h2>Inicio de Sesion</h2>
             <hr class="colorgraph">
             <div class="form-group">
-            <input type="email" name="correo" id="correo" class="form-control input-lg" placeholder="Email Address">
+            <input type="email" name="correo" id="correo" class="form-control input-lg" placeholder="Correo">
             </div>
             <div class="form-group">
-            <input type="password" name="contrasena" id="contrasena" class="form-control input-lg" placeholder="Password">
+            <input type="password" name="contrasena" id="contrasena" class="form-control input-lg" placeholder="Contraseña">
             </div>
             <span class="button-checkbox">
-              <button type="button" class="btn" data-color="info">Remember Me</button>
+              <button type="button" class="btn" data-color="info">Recuerdame</button>
                         <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
-              <a href="olvido.php" class="btn btn-link pull-right">Forgot Password?</a>
+              <a href="olvido.php" class="btn btn-link pull-right">Olvido contraseña?</a>
             </span>
             <hr class="colorgraph">
             <div class="row">
               <div class="col-xs-6 col-sm-6 col-md-6" >
                            
-             <input  type="submit"   class="btn btn-lg btn-success btn-block"  value="Sign In">
+             <input  type="submit"   class="btn btn-lg btn-success btn-block"  value="Iniciar Sesion">
                             
                             
               </div>
@@ -227,7 +226,7 @@ require_once('app/ini.php');
     </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar </button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -264,54 +263,44 @@ require_once('app/ini.php');
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-1 col-md-offset-1">
 
         <form action="php\guardar\g-usuarios.php" method="POST" autocomplete="on" >
-          <h2>Please Sign Up <small>It's free and always will be.</small></h2>
+          <h2>Registrese <small>Es gratis y todo para vos</small></h2>
           <hr class="colorgraph">
           <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6">
               <div class="form-group">
-              <input type="text" name="nombre" id="nombre" class="form-control input-lg" placeholder="First Name" tabindex="1">
+              <input type="text" name="nombre" id="nombre" class="form-control input-lg" placeholder="Nombre" tabindex="1">
               </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6">
               <div class="form-group">
-                <input type="text" name="apellido" id="apellido" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+                <input type="text" name="apellido" id="apellido" class="form-control input-lg" placeholder="Apellido" tabindex="2">
               </div>
             </div>
           </div>
           <div class="form-group">
-            <input type="text" name="apellido2" id="apellido2" class="form-control input-lg" placeholder="last Name2" tabindex="3">
+            <input type="text" name="apellido2" id="apellido2" class="form-control input-lg" placeholder="Apellido" tabindex="3">
           </div>
           <div class="form-group">
-            <input type="email" name="correo" id="correo" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+            <input type="email" name="correo" id="correo" class="form-control input-lg" placeholder="Correo" tabindex="4">
           </div>
           <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-6">
               <div class="form-group">
-                <input type="password" name="contrasena" id="contrasena" class="form-control input-lg" placeholder="Password" tabindex="5">
+                <input type="password" name="contrasena" id="contrasena" class="form-control input-lg" placeholder="Contraseña" tabindex="5">
               </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-6">
               <div class="form-group">
-                <input type="password" name="contrasena2" id="contrasena2" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+                <input type="password" name="contrasena2" id="contrasena2" class="form-control input-lg" placeholder="Confirmar Contraseña" tabindex="6">
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-xs-4 col-sm-3 col-md-3">
-              <span class="button-checkbox">
-                <button type="button" class="btn" data-color="info" tabindex="7">I Agree</button>
-                            <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
-              </span>
-            </div>
-            <div class="col-xs-8 col-sm-9 col-md-9">
-               By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
-            </div>
-          </div>
+         
           
           <hr class="colorgraph">
           <div class="row">
             <div class="col-xs-12 col-md-6">
-            <input  type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"/>
+            <input  type="submit" value="Registrar" class="btn btn-primary btn-block btn-lg" tabindex="7"/>
             </div>
             
           </div>
@@ -326,7 +315,7 @@ require_once('app/ini.php');
                               
                              </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -353,7 +342,7 @@ require_once('app/ini.php');
                  <div class="footer-desc text-center">
                      <img src="http://superdevresources.com/images/super-dev-resources-logo.png" width="82" height="48" alt="">
                      <p>
-                         <a href="/" rel="home" title="Super Dev Resources">Super Dev Resources</a> is a popular blog for finding<br>awesome free app and web development resources. <a href="/about/">Learn More</a>
+                         <a href="/" rel="home" title="Super Dev Resources">Nuestro propocito es crear una red en donde todos podamos compartir<br>las mejores aventuras con tu mejor amigo <a href="sobre.php">Leer mas</a>
                      </p>
                  </div>
              </div>
@@ -394,20 +383,13 @@ require_once('app/ini.php');
                  </ul>
             
 
-
-             <nav class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-                 <div class="input-group input-group-md">
-                   <input type="text" class="form-control" placeholder="Email Address">
-                   <span class="input-group-addon">Subscribe</span>
-                 </div>
-             </nav>
          </div> <!--/.row--> 
      </div> <!--/.container--> 
  </div> <!--/.footer-->
  
  <div class="footer-bottom">
      <div class="container">
-         <div class="pull-left"> Copyright © <a href="">Rizwan Akram</a>.  All right reserved.</div>
+         <div class="pull-left"> Copyright © <a href="">Mypetscr</a>.  todos los derechos reservados.</div>
      
      </div>
  </div> <!--/.footer-bottom--> 
@@ -434,7 +416,7 @@ require_once('app/ini.php');
       
       
       
-      <!-- Home tab content -->
+      <!-- Inicio tab content -->
       <div class="tab-pane" id="control-sidebar-home-tab">
         <h3 class="control-sidebar-heading">Recent Activity</h3>
         <ul class="control-sidebar-menu">
@@ -454,7 +436,7 @@ require_once('app/ini.php');
               <i class="menu-icon fa fa-user bg-yellow"></i>
 
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                <h4 class="control-sidebar-subheading">Frodo Updated His Perfil</h4>
 
                 <p>New phone +1(800)555-1234</p>
               </div>

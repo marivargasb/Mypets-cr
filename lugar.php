@@ -43,25 +43,30 @@
 <div class="wrapper">
 
   <header class="main-header">
-  
+  <style>
+  #map{
+
+width: 100%;
+height:100%;
+border: 3px solid black;
+height: 450px;
+}
+  </style>
 
   <?php
   
   include 'C:\xampp\htdocs\Mypetscr\php\cn.php';
   
   session_start();
-  if(isset($_SESSION['id'])){
-    
-      $id = $_SESSION['id'];
+if(isset($_SESSION['id'])){
+
+
+  $id = $_SESSION['id'];
+
   
-      
-     
-    
-    }else{
-    
-     // header("Location: registro.php");
-    
-    }
+  }else{
+    header("Location: lugar.php");
+  }
 
 
   $id_lugar = $_GET['id_lugar'];
@@ -120,7 +125,7 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
     ?></span>
 </a>
 <ul class="dropdown-menu">
-  <li class="header">You have  messages</li>
+  <li class="header">tienes mensajes</li>
   <li>
     <!-- inner menu: contains the actual data -->
     <ul class="menu">
@@ -240,10 +245,10 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="perfil3.php" class="btn btn-default btn-flat">Profile</a>
+                    <a href="perfil3.php" class="btn btn-default btn-flat">Perfil</a>
                   </div>
                   <div class="pull-right">
-                    <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat">Sign out</a>
+                    <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat">Cerrar Sesion</a>
                   </div>
                 </li>
               </ul>
@@ -296,13 +301,13 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
         
    
   
-      <div class="row">
+      <div class="row col-lg-12">
 
 
 
 
         <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
+        <section class="col-lg-12 connectedSortable">
   
 
 
@@ -341,7 +346,7 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
     </ol>
     <div class="carousel-inner">
       <div class="item active">
-        <img src="data:imagine/jpg;base64,<?php echo base64_encode($rows['foto']);  ?>"   width="900" height="1000" />
+        <img src="data:imagine/jpg;base64,<?php echo base64_encode($rows['foto']);  ?>"   width="1200" height="1000" />
 
         <div class="carousel-caption">
           First Slide
@@ -390,7 +395,7 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
 
      <h4><a id="web" href="#"><?php echo $rows['web'] ?></a>
      </h4>
-     <p  id="direccion" > <b>Direccion: </b> <?php echo $rows['direccion'] ?></p>
+     <p  id="direccion" > <b>Direccion: </b> <?php echo $rows['direccion'] ?>  <a  data-toggle="modal" data-target="#miModal" >Ver Ubicacion</a></p>
      <p id="descripcion"   > <b>Descripcion:</b> <?php echo $rows['descripcion'] ?> </p>
      <span id="categoria" class="label label-warning"><?php echo $rows['categoria'] ?></span>
     <span id="provincia" class="label label-danger"><?php echo $rows['provincia'] ?></span>
@@ -401,7 +406,7 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
  </div>
      <br>
       <div class="ratings">
-     <p class="pull-right">3 reviews</p>
+
      
   <button type="button pull-right" class="btn btn-primary">Me gusta</button>
     <button type="button" class="btn btn-danger">no gusta</button>
@@ -415,16 +420,57 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
 </div>
 
 
+<div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Ubicacion:  <?php $lats = $rows['latitud']; $lons =  $rows['longitud'];  echo $lats; echo $lons; ?></h4>
+      </div>
 
+      <div class="modal-body">
+            <div id="map" style="height: 300px; width: 100%;  color: black;  ">
+            </div><br><br>
+    
+      </div>
+     
+       
+      <script>
+        var   $lats =  [<?php echo $lats; ?>]
+        var  $lons = [<?php echo $lons;?>]
+        
+      function initMap() {
+     
+    
+        var uluru = {lat:  parseFloat( $lats), lng: parseFloat( $lons)};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru,
+          mapTypeId: 'satellite'
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+
+
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- Comments Form -->
     <div class="well">
-      <h4>Leave a Comment:</h4>
+      <h4>Dejar Comentario:</h4>
       <form  action="php\guardar\g-comentario.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?>" method="post">
           <div class="form-group">
               <textarea id="mensaje" name="mensaje" class="form-control" rows="3"></textarea>
           </div>
-<button  type="submit" class="btn btn-primary">Submit</button>
+<button  type="submit" class="btn btn-primary">Enviar</button>
       </form>
   </div>
 
@@ -469,6 +515,7 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
+    
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           </div>
           <div class="modal-body">
@@ -480,15 +527,15 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
         
         <form action="php\modificar\o-comentario.php?id= <?php echo $rowss['id_comentario'] ?>  " method="POST" role="form">
           <fieldset>
-            <h2>COMENTARIO</h2>
+        
             <div class="form-group">
               <textarea id="mensaje" name="mensaje" class="form-control" rows="3"> <?php echo $rowss['mensaje'] ?></textarea>
           </div>
 
             <div class="row">
-              <div class="col-xs-6 col-sm-6 col-md-6" >
+              <div class="col-xs-12 col-sm-12 col-md-12" >
                            
-             <input  type="submit"   class="btn btn-lg btn-success btn-block"  value="Sign In">
+             <input  type="submit"   class="btn btn-lg btn-success btn-block"  value="Editar">
                             
                   
               </div>
@@ -527,7 +574,7 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
 
        
             </span>
-        <span class="description">Sent  message -  <?php echo $rowss['fecha'] ?></span>
+        <span class="description">Enviado - <?php echo $rowss['fecha'] ?></span>
       </div>
       <!-- /.user-block -->
       <p>
@@ -556,77 +603,17 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
       </div>
 
          
-         
+ 
       <?php } ?>
+ 
 
+       
         </section>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
         
         
-        <section class="col-lg-5 connectedSortable">
-
-
-
-          <div class="box-body">
-
-
-
-   <!-- Blog Search Well -->
-   <div class="well">
-    <h4>Buscar</h4>
-    <div class="input-group">
-        <input type="text" class="form-control">
-        <span class="input-group-btn">
-            <button class="btn btn-danger" type="button">
-                <span class="glyphicon glyphicon-search"></span>
-        </button>
-        </span>
-    </div>
-    <!-- /.input-group -->
-</div>
-
-<!-- Blog Categories Well -->
-<div class="well">
-    <h4>CATEGORIAS PARA BUSCAR</h4>
-    <div class="row">
-        <div class="col-lg-6">
-            <ul class="list-unstyled">
-                <li><a href="file:///C:/Users/mariv/Documents/GitHub/mypetscr/parte4/mypetscr.html">Hotel</a>
-                </li>
-                <li><a href="file:///C:/Users/mariv/Documents/GitHub/mypetscr/parte4/mypetscr.html">Restaurante</a>
-                </li>
-                <li><a href="file:///C:/Users/mariv/Documents/GitHub/mypetscr/parte4/mypetscr.html">Aire libre</a>
-                </li>
-                <li><a href="file:///C:/Users/mariv/Documents/GitHub/mypetscr/parte4/mypetscr.html">Belleza</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-lg-6">
-            <ul class="list-unstyled">
-                <li><a href="file:///C:/Users/mariv/Documents/GitHub/mypetscr/parte4/mypetscr.html">Guanacaste</a>
-                </li>
-                <li><a href="file:///C:/Users/mariv/Documents/GitHub/mypetscr/parte4/mypetscr.html">Puntarenas</a>
-                </li>
-                <li><a href="file:///C:/Users/mariv/Documents/GitHub/mypetscr/parte4/mypetscr.html">San Jose</a>
-                </li>
-                <li><a href="file:///C:/Users/mariv/Documents/GitHub/mypetscr/parte4/mypetscr.html">Alajuela</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!-- /.row -->
-</div>
-
-
-
-
-
-          </div>
       
-  
-
-        </section>
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->
@@ -653,7 +640,7 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
                 <div class="footer-desc text-center">
                     <img src="http://superdevresources.com/images/super-dev-resources-logo.png" width="82" height="48" alt="">
                     <p>
-                        <a href="/" rel="home" title="Super Dev Resources">Super Dev Resources</a> is a popular blog for finding<br>awesome free app and web development resources. <a href="/about/">Learn More</a>
+                        <a href="/" rel="home" title="Super Dev Resources">Nuestro propocito es crear una red en donde todos podamos compartir<br>las mejores aventuras con tu mejor amigo <a href="sobre.php">Leer mas</a>
                     </p>
                 </div>
             </div>
@@ -694,29 +681,19 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
                 </ul>
            
 
-
-            <nav class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-                <div class="input-group input-group-md">
-                  <input type="text" class="form-control" placeholder="Email Address">
-                  <span class="input-group-addon">Subscribe</span>
-                </div>
-            </nav>
         </div> <!--/.row--> 
     </div> <!--/.container--> 
 </div> <!--/.footer-->
 
 <div class="footer-bottom">
     <div class="container">
-        <div class="pull-left"> Copyright © <a href="">Rizwan Akram</a>.  All right reserved.</div>
+           <div class="pull-left"> Copyright © <a href="">Mypetscr</a>.  todos los derechos reservados.</div>
     
     </div>
 </div> <!--/.footer-bottom--> 
 </footer>
 <!--/Footer-->
-                
-
-
-
+  
 
   
 
@@ -733,7 +710,7 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
       
       
       
-      <!-- Home tab content -->
+      <!-- Inicio tab content -->
       <div class="tab-pane" id="control-sidebar-home-tab">
         <h3 class="control-sidebar-heading">Recent Activity</h3>
         <ul class="control-sidebar-menu">
@@ -753,7 +730,7 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
               <i class="menu-icon fa fa-user bg-yellow"></i>
 
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                <h4 class="control-sidebar-subheading">Frodo Updated His Perfil</h4>
 
                 <p>New phone +1(800)555-1234</p>
               </div>
@@ -919,7 +896,10 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
  
 </div>
 <!-- ./wrapper -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKgL99QGHGEibwnzxvvO80HeE94NN3-NM&callback=initMap"
+    async defer></script>
 
+    
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -957,5 +937,6 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+
 </body>
 </html>

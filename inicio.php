@@ -49,8 +49,8 @@
                 <li class="nav-item">
                     <a class="nav-link link text-white display-4" href="registro.php">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</a>
                 </li></ul>
-            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="registro.php"><span class="mbri-plus mbr-iconfont mbr-iconfont-btn"></span>
-                    REGISTRO &nbsp; &nbsp; &nbsp;</a></div>
+            <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="perfil3.php"><span class="mbri-plus mbr-iconfont mbr-iconfont-btn"></span>
+                    Perfil &nbsp; &nbsp; &nbsp;</a></div>
         </div>
     </nav>
 </section>
@@ -68,8 +68,9 @@
                     MY PETS CR</h1>
                 
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">BIENVENIDO A NUESTRA PAGINA DONDE PODRAS EXPLORAR NUESTRO BELLO PAIS CON TU MEJOR AMIGO, DESDE LOS MEJORES RESTAURANTES HASTA LOS MEJORES HOTELES, SOL0 ENTRA Y DISCUBRE TODO LO QUE CR DE OFRECE</p>
-                <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-4" href="mypetscr.php">BUSCAR</a>
-                    <a class="btn btn-md btn-success display-4" href="registro.php">LOGIN</a></div>
+                <div class="mbr-section-btn"><a class="btn btn-md btn-secondary display-4" href="sobre.php">SOBRE NOSOTROS</a>
+                    <a class="btn btn-md btn-success display-4" href="registro.php">
+Cerrar Sesion</a></div>
             </div>
         </div>
     </div>

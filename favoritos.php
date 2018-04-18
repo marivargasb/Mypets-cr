@@ -39,6 +39,40 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+<style>
+  .destacados{
+  
+  text-align: center;
+  margin-top: 15px;
+  margin:0 auto; 
+ 
+}
+.destacados > div > div{
+	padding: 10px;
+  border:1px solid rgb(200, 200, 200);
+  background: rgb(253, 254, 254);
+	border-radius: 90px;
+  transition: 0.2s;
+  margin:0 auto; 
+  width: 225px;
+
+
+}
+
+.destacados > div:hover > div{
+
+	border: 1px solid rgb(200, 200, 200);
+	box-shadow: rgba(1, 0, 0, 0.1) 0px 5px 5px 2px;
+	background: rgba(253, 254, 254, 0.1);
+  transition: 0.5s;
+  
+}
+.favo{
+  padding: 20px 20px;
+  margin-left: -80px;
+
+}
+</style>
 <body class="layout-boxed skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -113,7 +147,7 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
     ?></span>
 </a>
 <ul class="dropdown-menu">
-  <li class="header">You have  messages</li>
+  <li class="header">tienes mensajes</li>
   <li>
     <!-- inner menu: contains the actual data -->
     <ul class="menu">
@@ -233,10 +267,10 @@ FROM lugar lg, favoritos fv WHERE lg.id_lugar = fv.id_lugar and fv.id_usuario = 
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="perfil3.php" class="btn btn-default btn-flat">Profile</a>
+                  <a href="perfil3.php" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat"> Cerrar Sesion</a>
                 </div>
               </li>
             </ul>
@@ -267,23 +301,15 @@ FROM lugar lg, favoritos fv WHERE lg.id_lugar = fv.id_lugar and fv.id_usuario = 
                 </div>
       </div>
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
+
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
       
    
-        <li class="header">LABELS</li>
+        <li class="header">MENU</li>
         <li><a href="mypetscr.php"><i class="fa fa-share text-red"></i> <span>Regresar</span></a></li>
-        <li><a href="inicio.php"><i class="fa fa-home text-yellow"></i> <span>inicio</span></a></li>
+        <li><a href="index.php"><i class="fa fa-home text-yellow"></i> <span>index</span></a></li>
         <li><a href="favoritos.php"><i class="fa fa-th  text-aqua"></i> <span>Favoritos</span></a></li>
         <li><a href="perfil3.php"><i class="fa fa-cog text-red"></i> <span>Editar Perfil</span></a></li>
         <li><a href="sobre.php"><i class="fa fa-file text-yellow"></i> <span>Sobre Notros</span></a></li>
@@ -359,7 +385,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
           <small> mis favoritos</small>
         </h1>
         <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
           <li><a href="#">favoritos</a></li>
     
         </ol>
@@ -388,18 +414,16 @@ if(mysqli_num_rows($verificar_usuario)> 0){
 
                 <div id="page-wrapper">
                     
-                                <div class="container-fluid">
+               <div class="container">
                     
-                              
-                                    <!-- /.row -->
-                    
-                    <section class="caja">
-                     <div class="row">
+  <div class="container">
+	<div class="row destacados">
+<br> <br>
 
                                        <?php
 
                        $id_usuario = $row['id_usuarios'];
-                      $query = "SELECT  lg.id_lugar , lg.nombre, lg.foto , lg.descripcion, fv.id_lugar, fv.id_usuario , fv.id_favoritos
+                      $query = "SELECT  lg.id_lugar , lg.nombre, lg.foto , lg.descripcion, lg.categoria, fv.id_lugar, fv.id_usuario , fv.id_favoritos
                       FROM lugar lg, favoritos fv WHERE lg.id_lugar = fv.id_lugar and fv.id_usuario = $id_usuario";
                     $resultado = $conexion->query($query);
 
@@ -408,66 +432,30 @@ if(mysqli_num_rows($verificar_usuario)> 0){
                         ?>
 
 
-                                <div class="col-md-4 portfolio-item">
-                                    <a href="lugar.php">
-                                        <img class="img-responsive imagen" src="data:imagine/jpg;base64,<?php echo base64_encode($rows['foto']);  ?>" alt="">
-                                    </a>
-                                    <h3>
-                                        <a href="lugar.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?> "><?php echo $rows['nombre'] ?></a>
-                                    </h3>
-                                    
-                        <a href="php\borrar\b-favoritos.php?id= <?php echo $rows['id_favoritos']  ?> ">  <button class="btn btn-danger "  type="button"  > ELIMINAR </button> </a>
-                                   
-                                   
-                                </div>
+
+		<div class=" col-xs-12 col-sm-6 col-md-4 col-lg-4 favo">
+			<div>
+				<img  src="data:imagine/jpg;base64,<?php echo base64_encode($rows['foto']);  ?>"  class="img-circle  " alt="Cinque Terre" width="150" height="150" >
+				<h2> <a href="lugar.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?> "><?php echo $rows['nombre'] ?></a></h2>
+				<p><?php echo $rows['categoria'] ?></p>
+        <a href="php\borrar\b-favoritos.php?id= <?php echo $rows['id_favoritos']  ?> ">  <button class="btn btn-danger "  type="button"  > ELIMINAR </button> </a>
+        <br>  <br>
+			</div>
+		</div>
+
+
 
                               
 
                   <?php } ?>
 
-                                
+                                  <!-- INICIO -->
+                                  </div>
+</div>
+
+     <!-- FIN -->  
                                  
-                            
-                            </div>
-                    
-                           
-                            <!-- /.row -->
-                    
-                            <hr>
-                    
-                            <!-- Pagination -->
-                            <div class="row text-center">
-                                <div class="col-lg-12">
-                                    <ul class="pagination">
-                                        <li>
-                                            <a href="#">&laquo;</a>
-                                        </li>
-                                        <li class="active">
-                                            <a href="#">1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">2</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">3</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">4</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">5</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">&raquo;</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- /.row -->
-                   
-                         
-                        
-                        </section>
+                      
                     
                                  
                     
@@ -490,8 +478,14 @@ if(mysqli_num_rows($verificar_usuario)> 0){
               </div>
          
          
-         
+         <!-- inicio-->
+
+
+         <!-- fin -->
      
+
+
+ 
 
         </section>
         <!-- /.Left col -->
@@ -525,7 +519,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
                  <div class="footer-desc text-center">
                      <img src="http://superdevresources.com/images/super-dev-resources-logo.png" width="82" height="48" alt="">
                      <p>
-                         <a href="/" rel="home" title="Super Dev Resources">Super Dev Resources</a> is a popular blog for finding<br>awesome free app and web development resources. <a href="/about/">Learn More</a>
+                         <a href="/" rel="home" title="Super Dev Resources">Nuestro propocito es crear una red en donde todos podamos compartir<br>las mejores aventuras con tu mejor amigo <a href="sobre.php">Leer mas</a>
                      </p>
                  </div>
              </div>
@@ -567,19 +561,17 @@ if(mysqli_num_rows($verificar_usuario)> 0){
             
 
 
-             <nav class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-                 <div class="input-group input-group-md">
-                   <input type="text" class="form-control" placeholder="Email Address">
-                   <span class="input-group-addon">Subscribe</span>
-                 </div>
-             </nav>
+             
+                  
+                      
+              
          </div> <!--/.row--> 
      </div> <!--/.container--> 
  </div> <!--/.footer-->
  
  <div class="footer-bottom">
      <div class="container">
-         <div class="pull-left"> Copyright © <a href="">Rizwan Akram</a>.  All right reserved.</div>
+          <div class="pull-left"> Copyright © <a href="">mypetscr</a>. Todos los derechos reservados</div>
      
      </div>
  </div> <!--/.footer-bottom--> 
@@ -596,7 +588,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
-      <!-- Home tab content -->
+      <!-- Inicio tab content -->
       <div class="tab-pane" id="control-sidebar-home-tab">
         <h3 class="control-sidebar-heading">Recent Activity</h3>
         <ul class="control-sidebar-menu">
@@ -616,7 +608,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
               <i class="menu-icon fa fa-user bg-yellow"></i>
 
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                <h4 class="control-sidebar-subheading">Frodo Updated His Perfil</h4>
 
                 <p>New phone +1(800)555-1234</p>
               </div>

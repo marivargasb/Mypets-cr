@@ -116,7 +116,7 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
     ?></span>
 </a>
 <ul class="dropdown-menu">
-  <li class="header">You have  messages</li>
+  <li class="header">tienes mensajes</li>
   <li>
     <!-- inner menu: contains the actual data -->
     <ul class="menu">
@@ -237,10 +237,10 @@ FROM lugar lg, favoritos fv WHERE lg.id_lugar = fv.id_lugar and fv.id_usuario = 
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="perfil3.php" class="btn btn-default btn-flat">Profile</a>
+                  <a href="perfil3.php" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat"> Cerrar Sesion</a>
                 </div>
               </li>
             </ul>
@@ -271,23 +271,15 @@ FROM lugar lg, favoritos fv WHERE lg.id_lugar = fv.id_lugar and fv.id_usuario = 
                 </div>
       </div>
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
+
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
       
    
-        <li class="header">LABELS</li>
+        <li class="header">MENU</li>
         <li><a href="mypetscr.php"><i class="fa fa-share text-red"></i> <span>Regresar</span></a></li>
-        <li><a href="inicio.php"><i class="fa fa-home text-yellow"></i> <span>inicio</span></a></li>
+        <li><a href="index.php"><i class="fa fa-home text-yellow"></i> <span>index</span></a></li>
         <li><a href="favoritos.php"><i class="fa fa-th  text-aqua"></i> <span>Favoritos</span></a></li>
         <li><a href="perfil3.php"><i class="fa fa-cog text-red"></i> <span>Editar Perfil</span></a></li>
         <li><a href="sobre.php"><i class="fa fa-file text-yellow"></i> <span>Sobre Notros</span></a></li>
@@ -348,7 +340,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
         <li class="active">Lugar</li>
       </ol>
     </section>
@@ -393,7 +385,7 @@ if($rows = $resultado-> fetch_assoc()){
                 <div class="box-body">
 
              
-                       <form action="php\modificar\o-lugar.php?id = <?php $id ?>" method="post" enctype="multipart/form-data">
+                       <form action="php\modificar\o-lugar.php?id= <?php echo $row['id_usuarios']  ?>" method="post" enctype="multipart/form-data">
           
                   
                           <div class="form-group">
@@ -442,19 +434,32 @@ if($rows = $resultado-> fetch_assoc()){
                             <label for="exampleTextarea">Direccion</label>
                             <textarea class="form-control"    name ="direccion"  id="direccion" rows="3"  ><?php  echo $rows['direccion']; ?></textarea>
                           </div>
+                    
+
+                    
+
+                           <div class="form-group ">
+                            <label for="exampleTextarea">Latitud</label>
+                            <input type="text" class="form-control"    name ="latitud"  id="latitud" rows="3" value="<?php  echo $rows['latitud']; ?>" >
+                          </div>
+
+                           <div class="form-group ">
+                            <label for="exampleTextarea">Longitud</label>
+                            <input type="text" class="form-control"    name ="longitud"  id="longitud" rows="3" value="<?php  echo $rows['longitud']; ?>" >
+                          </div>
                           
                           
-                            <div class="form-group">
+                            <div class="form-group ">
                             <label for="exampleTextarea">Descripcion</label>
                             <textarea class="form-control"    name ="descripcion"  id="descripcion" rows="3"  ><?php  echo $rows['descripcion']; ?></textarea>
                           </div>
                           
                           <div class="form-group">
-                          <label for="exampleInputFile">Fotos de perfil</label>
-                          <img  src="data:imagine/jpg;base64,<?php echo base64_encode($rows['foto']);  ?>"  class=" col-lg-2 col-sm-3 col-xs-3 col-md-2 img-rounded " >
-                          <input type="file" class="form-control-file" name="foto" value="<?php echo base64_encode($rows['foto']);  ?>" >
-                          <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
-                        </div>
+                                 <label for="exampleInputFile">Fotos de perfil</label>
+                                 <img  src="data:imagine/jpg;base64,<?php echo base64_encode($rows['foto']);  ?>"  class=" col-lg-2 col-sm-3 col-xs-3 col-md-2 img-rounded " >
+                                 <input type="file" class="form-control-file" name="foto" value="<?php echo base64_encode($row['foto']);  ?>" >
+                                 <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                               </div>
                           
                           <div class="form-check">
                             <label class="form-check-label">
@@ -485,77 +490,62 @@ if($rows = $resultado-> fetch_assoc()){
 
        
        
-       
-       
-       <!-- Calendar -->
-     <div class="box box-solid bg-green-gradient">
-        <div class="box-header">
-          <i class="fa fa-calendar"></i>
-          <h3 class="box-title">Calendar</h3>
-          <!-- tools box -->
-          <div class="pull-right box-tools">
-            <!-- button with a dropdown -->
-            <div class="btn-group">
-              <button class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-              <ul class="dropdown-menu pull-right" role="menu">
-                <li><a href="#">Add new event</a></li>
-                <li><a href="#">Clear events</a></li>
-                <li class="divider"></li>
-                <li><a href="#">View calendar</a></li>
-              </ul>
+
+
+          <!-- Map box -->
+          <div class="box box-solid bg-light-blue-gradient">
+            <div class="box-header">
+              <!-- tools box -->
+              <div class="pull-right box-tools">
+                <button class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip" title="Date range"><i class="fa fa-calendar"></i></button>
+                <button class="btn btn-primary btn-sm pull-right" data-widget='collapse' data-toggle="tooltip" title="Collapse" style="margin-right: 5px;"><i class="fa fa-minus"></i></button>
+              </div><!-- /. tools -->
+
+              <i class="fa fa-map-marker"></i>
+              <h3 class="box-title">
+                Ubicacion:  <?php $lats = $rows['latitud']; $lons =  $rows['longitud'];  echo $lats; echo $lons; ?>
+              </h3>
             </div>
-            <button class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-          </div><!-- /. tools -->
-        </div><!-- /.box-header -->
-        <div class="box-body no-padding">
-          <!--The calendar -->
-          <div id="calendar" style="width: 100%"></div>
-        </div><!-- /.box-body -->
-        <div class="box-footer text-black">
-          <div class="row">
-            <div class="col-sm-6">
-              <!-- Progress bars -->
+            <div class="box-body">
+              <div id="map" style="height: 250px; width: 100%;  color: black;  "></div>
+           
+           
+       
+      <script>
+        var   $lats =  [<?php echo $lats; ?>]
+        var  $lons = [<?php echo $lons;?>]
+        
+      function initMap() {
+     
     
-            
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div>
-      </div><!-- /.box -->
+        var uluru = {lat:  parseFloat( $lats), lng: parseFloat( $lons)};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
 
+            </div><!-- /.box-body-->
+            <div class="box-footer no-border">
+              <div class="row">
+           <!-- ./col -->
+              </div><!-- /.row -->
+            </div>
+          </div>
+          <!-- /.box -->
 
-
-              <!-- Map box -->
-              <div class="box box-solid bg-light-blue-gradient">
-                <div class="box-header">
-                  <!-- tools box -->
-                  <div class="pull-right box-tools">
-                    <button class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip" title="Date range"><i class="fa fa-calendar"></i></button>
-                    <button class="btn btn-primary btn-sm pull-right" data-widget='collapse' data-toggle="tooltip" title="Collapse" style="margin-right: 5px;"><i class="fa fa-minus"></i></button>
-                  </div><!-- /. tools -->
-
-                  <i class="fa fa-map-marker"></i>
-                  <h3 class="box-title">
-                    Visitors
-                  </h3>
-                </div>
-                <div class="box-body">
-                  <div id="world-map" style="height: 250px; width: 100%;"></div>
-                </div><!-- /.box-body-->
-                <div class="box-footer no-border">
-                  <div class="row">
-               <!-- ./col -->
-                  </div><!-- /.row -->
-                </div>
-              </div>
-              <!-- /.box -->
 
               
               <!-- Chat box -->
               <div class="box box-success">
                   <div class="box-header">
                     <i class="fa fa-comments-o"></i>
-                    <h3 class="box-title">Chat</h3>
+                    <h3 class="box-title">Mensajes</h3>
                     <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
                       <div class="btn-group" data-toggle="btn-toggle" >
                         <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i></button>
@@ -601,11 +591,7 @@ if($rows = $resultado-> fetch_assoc()){
 
                   </div><!-- /.chat -->
                   <div class="box-footer">
-                    <div class="input-group">
-                      <input class="form-control" placeholder="Type message..."/>
-                      <div class="input-group-btn">
-                        <button class="btn btn-success"><i class="fa fa-plus"></i></button>
-                      </div>
+                 
                     </div>
                   </div>
                 </div><!-- /.box (chat box) -->
@@ -645,7 +631,7 @@ if($rows = $resultado-> fetch_assoc()){
                 <div class="footer-desc text-center">
                     <img src="http://superdevresources.com/images/super-dev-resources-logo.png" width="82" height="48" alt="">
                     <p>
-                        <a href="/" rel="home" title="Super Dev Resources">Super Dev Resources</a> is a popular blog for finding<br>awesome free app and web development resources. <a href="/about/">Learn More</a>
+                        <a href="/" rel="home" title="Super Dev Resources">Nuestro propocito es crear una red en donde todos podamos compartir<br>las mejores aventuras con tu mejor amigo <a href="sobre.php">Leer mas</a>
                     </p>
                 </div>
             </div>
@@ -687,19 +673,16 @@ if($rows = $resultado-> fetch_assoc()){
            
 
 
-            <nav class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-                <div class="input-group input-group-md">
-                  <input type="text" class="form-control" placeholder="Email Address">
-                  <span class="input-group-addon">Subscribe</span>
-                </div>
-            </nav>
+            
+                 
+           
         </div> <!--/.row--> 
     </div> <!--/.container--> 
 </div> <!--/.footer-->
 
 <div class="footer-bottom">
     <div class="container">
-        <div class="pull-left"> Copyright © <a href="">Rizwan Akram</a>.  All right reserved.</div>
+           <div class="pull-left"> Copyright © <a href="">Mypetscr</a>.  todos los derechos reservados.</div>
     
     </div>
 </div> <!--/.footer-bottom--> 
@@ -716,7 +699,7 @@ if($rows = $resultado-> fetch_assoc()){
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
-      <!-- Home tab content -->
+      <!-- Inicio tab content -->
       <div class="tab-pane" id="control-sidebar-home-tab">
         <h3 class="control-sidebar-heading">Recent Activity</h3>
         <ul class="control-sidebar-menu">
@@ -736,7 +719,7 @@ if($rows = $resultado-> fetch_assoc()){
               <i class="menu-icon fa fa-user bg-yellow"></i>
 
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                <h4 class="control-sidebar-subheading">Frodo Updated His Perfil</h4>
 
                 <p>New phone +1(800)555-1234</p>
               </div>
@@ -940,5 +923,8 @@ if($rows = $resultado-> fetch_assoc()){
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKgL99QGHGEibwnzxvvO80HeE94NN3-NM&callback=initMap">
+    </script>
 </body>
 </html>

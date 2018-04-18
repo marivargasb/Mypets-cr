@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Configuracion</title>
+  <title>Mi Lugar</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -27,54 +27,152 @@
   <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="css/estilos-footer.css">
 
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  <link rel="stylesheet" href="css/estilos-sobre.css">
-  <link rel="stylesheet" href="css/estilos-footer.css">
-
-
 </head>
 <body class="layout-boxed skin-blue sidebar-mini">
 <div class="wrapper">
 
-
-
-
   <header class="main-header">
+  <style>
+  #map{
 
+width: 100%;
+height:100%;
+border: 3px solid black;
+height: 450px;
+}
+  </style>
 
+  <?php
   
-
-    <!-- Logo -->
-    <a href="mypetscr.php" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>C</b>R</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Mypets</b>CR</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-
-        <div class="navbar-custom-menu ">
-            <ul class="nav navbar-nav">
-              
-   
-              <!-- Control Sidebar Toggle Button -->
-              <li>
-                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-              </li>
-            </ul>
-          </div>
+  include 'C:\xampp\htdocs\Mypetscr\php\cn.php';
+  
+  session_start();
+  if(isset($_SESSION['id'])){
+    
+      $id = $_SESSION['id'];
+      header("Location: lugar2.php");
+  
+    
+    }else{
+    
     
 
+    
+    }
+
+
+  $id_lugar = $_GET['id_lugar'];
+
+  ?>
+  
+  <!-- Logo -->
+  <a href="mypetscr.php" class="logo">
+    <!-- mini logo for sidebar mini 50x50 pixels -->
+    <span class="logo-mini"><b>C</b>R</span>
+    <!-- logo for regular state and mobile devices -->
+   
+    <span class="logo-lg"><b>Mypets</b> <label class="label label-danger" >CR</label></span>
+  </a>
+  <!-- Header Navbar: style can be found in header.less -->
+  <nav class="navbar navbar-static-top">
+    <div class="navbar-custom-menu ">
+      <ul class="nav navbar-nav">
 
 
 
+    <!-- Notifications: style can be found in dropdown.less -->
+    <li class="dropdown messages-menu">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <i class="fa  fa-heart"></i>
+  
+        </a>
+        <ul class="dropdown-menu">
+          <li class="header">Favoritos recientes</li>
+          <li>
+            <!-- inner menu: contains the actual data -->
+            <ul class="menu">
+         
+           
 
+            
+            
+                              <li><!-- start message -->
+                                <a href="lugar.php">
+                                  <div class="pull-left">
+                                    <img src="https://pbs.twimg.com/media/CnsHg1nWYAEFutg.png" class="img-circle" alt="User Image">
+                                  </div>
+                                  <h4>
+                              no disponible sin incio de seccion
+                                   
+                                  </h4>
 
-    </nav>
+                                </a>
+                              </li>
+                              <!-- end message -->
+            
+           
+                            
+              <!-- end message -->
+            
+
+            </ul>
+          </li>
+          <li class="footer"><a href="#"> favoritos</a></li>
+        </ul>
+      </li>
+<!-- User Account: style can be found in dropdown.less -->
+<li class="dropdown user user-menu">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+<img src="https://pbs.twimg.com/media/CnsHg1nWYAEFutg.png" class="user-image" alt="User Image">
+<span class="hidden-xs">Registrar</span>
+</a>
+<ul class="dropdown-menu">
+<!-- User image -->
+<li class="user-header">
+ <img src="https://pbs.twimg.com/media/CnsHg1nWYAEFutg.png" class="img-circle" alt="User Image">
+
+ <p>
+registrar
+
+ </p>
+</li>
+<!-- Menu Body -->
+<li class="user-body">
+ <div class="row">
+
+   <div class="col-xs-12 text-center">
+     <a href="sobre.php">Sobre Nosotros</a>
+   </div>
+ </div>
+ <!-- /.row -->
+</li>
+<!-- Menu Footer-->
+<li class="user-footer">
+
+ <div class="col-xs-12 text-center">
+   <a href="registro.php" class="btn btn-info btn-flat"> Cerrar Sesion</a>
+ </div>
+</li>
+</ul>
+</li>
+<!-- Control Sidebar Toggle Button -->
+<li>
+<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+</li>
+</ul>
+</div>
+</nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
 
@@ -84,6 +182,7 @@
 
 
 
+    
 
 
 
@@ -99,10 +198,10 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-         SOBRE NOSOTROS
-          <small> Quedebe saber</small>
+         Pagina
+          <small> mi pagina</small>
         </h1>
-        
+    
       </section>
   
 
@@ -115,86 +214,264 @@
         
    
   
-      <div class="row">
+      <div class="row col-lg-12">
 
 
 
 
         <!-- Left col -->
         <section class="col-lg-12 connectedSortable">
+  
+
+
+
+
          
-         
-         <div class="box-body">
+    <div class="box-body">
 
 
-            <section class="header-image">
-                <div class="headline">
-                    <div class="container">
-                        <h1>Sobre nosotros</h1>
-                        <h2>Lo que debe saber </h2>
-                    </div>
-                </div>
-            </section>
-
-
-
-            <div class="container">
-                
-                        <hr class="featurette-divider">
-                
-                        <!-- First Featurette -->
-                        <div class="featurette" id="about">
-                          <img class="featurette-image img-circle img-responsive pull-left" src="img/juntos.jpg">
-                            <h2 class="featurette-heading">Nuestra mision
-                                
-                            </h2>
-                            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo</p>
-                        </div>
-                
-                        <hr class="featurette-divider">
-                
-                        <!-- Second Featurette -->
-                        <div class="featurette" id="services">
-                            <img class="featurette-image img-circle img-responsive pull-left" src="img/mision.jpg">
-                            <h2 class="featurette-heading">Usuarios
-                                <span class="text-muted">una red para todos</span>
-                            </h2>
-                            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-                        </div>
-                
-                        <hr class="featurette-divider">
-                
-                        <!-- Third Featurette -->
-                        <div class="featurette" id="contact">
-                             <img class="featurette-image img-circle img-responsive pull-left" src="http://susociodenegocios.com/wp-content/uploads/2016/07/Fotos.jpg">
-                            <h2 class="featurette-heading">Empresarios
-                                <span class="text-muted">Crecer juntos</span>
-                            </h2>
-                            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-                        </div>
-                
-                        <hr class="featurette-divider">
-                
-                    
-                    </div>
+       
+    <?php
+  
+  
+  
+  $query = "SELECT * FROM lugar WHERE id_lugar ='$id_lugar' ";
+  $resultado = $conexion->query($query);
+  if($rows = $resultado-> fetch_assoc()){
+  ?>
 
 
 
-         </div>
-         
+      <div class="thumbnail">
+
+
+          <h1 id="negocio"> <?php echo $rows['nombre'] ?></h1>
+          
+  <div class="row carousel-holder">
+
+
+ <div class="col-md-12">
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="data:imagine/jpg;base64,<?php echo base64_encode($rows['foto']);  ?>"  width="1200" height="1000" />
+
+        <div class="carousel-caption">
+          First Slide
+        </div>
+      </div>
+   
+    </div>
+    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+      <span class="fa fa-angle-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+      <span class="fa fa-angle-right"></span>
+    </a>
+  </div>
+ </div>
+
+</div>
+ <div class="caption-full">
+
+
+
+
+
+
+     <h4><a id="web" href="#"><?php echo $rows['web'] ?></a>
+     </h4>
+     <p  id="direccion" > <b>Direccion: </b> <?php echo $rows['direccion'] ?>  <a  data-toggle="modal" data-target="#miModal" >Ver Ubicacion</a></p>
+     <p id="descripcion"   > <b>Descripcion:</b> <?php echo $rows['descripcion'] ?> </p>
+     <span id="categoria" class="label label-warning"><?php echo $rows['categoria'] ?></span>
+    <span id="provincia" class="label label-danger"><?php echo $rows['provincia'] ?></span>
      
+     <p id="email" ><b>Correo Electronico:</b> <?php echo $rows['correo'] ?></p>
+     <p  id="telefono" ><b>Telefono:</b>(506+)<?php echo $rows['telefono'] ?></p>
+     
+ </div>
+     <br>
+      <div class="ratings">
+     <p class="pull-right"><?php echo $rows['me-gusta']  ?> me gustas</p>
+     
+  
+  
+ <br>
+  
+ </div>
+ 
+
+
+</div>
+
+
+<div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Ubicacion:  <?php $lats = $rows['latitud']; $lons =  $rows['longitud'];  echo $lats; echo $lons; ?> </h4>
+      </div>
+
+      <div class="modal-body">
+            <div id="map" style="height: 300px; width: 100%;  color: black;  ">
+            </div><br><br>
+    
+      </div>
+     
+       
+      <script>
+        var   $lats =  [<?php echo $lats; ?>]
+        var  $lons = [<?php echo $lons;?>]
+        
+      function initMap() {
+     
+    
+        var uluru = {lat:  parseFloat( $lats), lng: parseFloat( $lons)};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru,
+          mapTypeId: 'satellite'
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+ 
+
+
+
+    
+             
+             
+  <div class="active tab-pane" id="activity">
+    <!-- Post -->
+    <?php
+
+   $query = "SELECT  cm.* ,us.nombre, us.foto , us.id_usuarios
+   FROM comentario cm, usuarios us WHERE  us.id_usuarios = cm.id_usuario and cm.id_lugar =  $id_lugar";
+  $resultado = $conexion->query($query);
+
+   while($rowss = $resultado-> fetch_assoc()){
+                           
+                        ?>
+
+
+
+
+    <div class="post clearfix">
+      <div class="user-block">
+        <img class="img-circle img-bordered-sm" src="data:imagine/jpg;base64,<?php echo base64_encode($rowss['foto']);  ?>" alt="User Image">
+            <span class="username">
+              <a href="#"> <?php echo $rowss['nombre'] ?></a>
+
+       
+<!-- COMENTARIO-->
+
+
+    <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          </div>
+          <div class="modal-body">
+          <div class="container">
+    
+            <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-1 col-md-offset-1">
+        
+        
+        <form action="php\modificar\o-comentario.php?id= <?php echo $rowss['id_comentario'] ?>  " method="POST" role="form">
+          <fieldset>
+            <h2>COMENTARIO</h2>
+            <div class="form-group">
+              <textarea id="mensaje" name="mensaje" class="form-control" rows="3"> <?php echo $rowss['mensaje'] ?></textarea>
+          </div>
+
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6" >
+                           
+             <input  type="submit"   class="btn btn-lg btn-success btn-block"  value="Sign In">
+                            
+                  
+              </div>
+              
+            </div>
+          </fieldset>
+        </form>
+
+      </div>
+    </div>
+    
+    </div>
+          </div>
+  
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+
+       
+            </span>
+        <span class="description">Sent  message -  <?php echo $rowss['fecha'] ?></span>
+      </div>
+      <!-- /.user-block -->
+      <p>
+      <?php echo $rowss['mensaje'] ?>
+      </p>
+
+  
+    </div>
+    <!-- /.post -->
+
+
+
+
+
+
+
+
+
+                        <?php   } ?>
+    
+                   
+    <!-- /.post -->
+  </div>
+
+
+      </div>
+
+         
+         
+      <?php } ?>
 
         </section>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
         
-        
-        <section class="col-lg-5 connectedSortable">
 
-      
-  
-
-        </section>
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->
@@ -202,7 +479,12 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
+
+
+
+
+
+
 
 
 <!--Footer-->
@@ -257,8 +539,7 @@
 
 
             
-                 
-        
+          
         </div> <!--/.row--> 
     </div> <!--/.container--> 
 </div> <!--/.footer-->
@@ -271,11 +552,7 @@
 </div> <!--/.footer-bottom--> 
 </footer>
 <!--/Footer-->
-                
   
-
-
-
 
   
 
@@ -479,6 +756,8 @@
 </div>
 <!-- ./wrapper -->
 
+
+    
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -516,6 +795,8 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKgL99QGHGEibwnzxvvO80HeE94NN3-NM&callback=initMap">
+    </script>
 </body>
 </html>
-

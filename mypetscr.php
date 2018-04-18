@@ -64,27 +64,34 @@ if(isset($_SESSION['id'])){
   
     $id = $_SESSION['id'];
 
-   
+
+
+
 
   //  header("Location: php\obtener\busque.php?id= $id");
   
   }else{
-  
-    header("Location: registro.php");
-  
+
+    header("Location: mypetscr3.php");
   }
+
+  
   echo "<script>\n";
-   echo "var_id ='" .$id. "'\n";
+  echo "var_id ='" .$id. "'\n";
   echo "</script>\n";
  
-  
+
+
+
+
+
   $query = "SELECT * FROM usuarios WHERE id_usuarios = '$id' ";
   $resultado = $conexion->query($query);
   if($row = $resultado-> fetch_assoc()){
   ?>
-       
+ 
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="index.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>C</b>R</span>
           <!-- logo for regular state and mobile devices -->
@@ -107,7 +114,6 @@ if(isset($_SESSION['id'])){
     
     
     
-          
                   <!-- Messages: style can be found in dropdown.less-->
         
 
@@ -136,7 +142,7 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
     ?></span>
 </a>
 <ul class="dropdown-menu">
-  <li class="header">You have  messages</li>
+  <li class="header">tienes mensajes</li>
   <li>
     <!-- inner menu: contains the actual data -->
     <ul class="menu">
@@ -258,10 +264,10 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
      <!-- Menu Footer-->
      <li class="user-footer">
        <div class="pull-left">
-         <a href="perfil3.php" class="btn btn-default btn-flat">Profile</a>
+         <a href="perfil3.php" class="btn btn-default btn-flat">Perfil</a>
        </div>
        <div class="pull-right">
-         <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat">Sign out</a>
+         <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat"> Cerrar Sesion</a>
        </div>
      </li>
    </ul>
@@ -273,18 +279,10 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
 </ul>
 </div>
 </nav>
+
+
 </header>
 <!-- Left side column. contains the logo and sidebar -->
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -390,6 +388,7 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
 
             <?php
 
+
 $query = "SELECT * FROM `lugar` ";
 $resultado = $conexion->query($query);
 while($rows = $resultado-> fetch_assoc()){
@@ -408,7 +407,7 @@ while($rows = $resultado-> fetch_assoc()){
                               <div class="caption">
                                 <div class="row">
                                   <div class="col-md-12 col-xs-12">
-                                  <a href="lugar.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?> "  > 
+                                  <a href="lugar.php?id_lugar= <?php echo $rows['id_lugar']  ?> "  > 
                                     <h3 class="text-center" >    </span>   <label class="badge  fa fa-paw  label-info"> <?php echo $rows['nombre']; ?> </label></h3>
                                     </a>
                                   </div>
@@ -425,65 +424,61 @@ while($rows = $resultado-> fetch_assoc()){
                                   <div class="col-md-12">
 
                                   <?php 
-                                  
-            
-                                        $id_lugar = $rows['id_lugar'];
-                                        $id_usuario = $row['id_usuarios'];
-            
-            
-            
-            
-                                        $verificar_me = mysqli_query($conexion, "SELECT * FROM `me-gusta` WHERE id_lugar = '$id_lugar' and id_usuario = '$id_usuario' " );
-                                        
-                                         if(mysqli_num_rows($verificar_me)> 0){
-                                          if ($ro = $verificar_me->fetch_row()) {
-                                            $id_gusta = ($ro[0]);
-                                            $likes = ($ro[3]);
-                                       
-                                             }
-            
-                                          ?>
-                                           
-            
-                                           <button class="btn btn-danger  submit-button " value="1" name ="boton"  onclick="window.location.href = 'php/borrar/b-like.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?>'"  > quitar like <span class="badge "> <?php echo $rows['me-gusta']  ?>  </span> </button>
-                                            
-                                        
-                                           <?php             
-                                           }else{
-                                            ?>
-                                        
-                                           
-            
-                                        <button class="btn btn-success  submit-button " value="1" name ="boton"  onclick="window.location.href = 'php/obtener/me-gusta.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?> '"  > me gusta <span class="badge "> <?php echo $rows['me-gusta']  ?>  </span> </button>
-                                            
-                                             <?php
-                                             }
-                                        
-                                             ?> 
-                                      
-            
-            
-            
-            
-                                           <?php
-                                        
-                                      $verificar_usuario = mysqli_query($conexion, "SELECT * FROM favoritos WHERE id_usuario = '$id_usuario' and id_lugar = '$id_lugar' " );
-            
-                                      if(mysqli_num_rows($verificar_usuario)> 0){
-            
+                             
+
+                                    $id_lugar = $rows['id_lugar'];
+                                    $id_usuario = $row['id_usuarios'];
+                                    $verificar_me = mysqli_query($conexion, "SELECT * FROM `me-gusta` WHERE id_lugar = '$id_lugar' and id_usuario = '$id_usuario' " );
+                                    
+                                     if(mysqli_num_rows($verificar_me)> 0){
+                                      if ($ro = $verificar_me->fetch_row()) {
+                                        $id_gusta = ($ro[0]);
+                                        $likes = ($ro[3]);
+                                   
+                                         }
+        
                                       ?>
-                                       <button class="btn btn-warning " type="button"  > Agregado </button>
+                                       
+        
+                                       <button class="btn btn-danger  submit-button " value="1" name ="boton"  onclick="window.location.href = 'php/borrar/b-like.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?>'"  > quitar like <span class="badge "> <?php echo $rows['me-gusta']  ?>  </span> </button>
+                                        
+                                    
+                                       <?php             
+                                       }else{
+                                        ?> 
+        
+                                    <button class="btn btn-success  submit-button " value="1" name ="boton"  onclick="window.location.href = 'php/obtener/me-gusta.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?> '"  > me gusta <span class="badge "> <?php echo $rows['me-gusta']  ?>  </span> </button>
+                                        
+                                         <?php
+                                         }
+                                    
+                                         ?> 
+                        
             
-                                      <?php             
-                                      }else{
-                                        ?>
             
-                                    <a href="php\guardar\g-favoritos.php?id= <?php echo $row['id_usuarios']  ?> &id_lugar= <?php echo $rows['id_lugar']  ?>">  <button class="btn btn-warning " type="button"  > Agregar </button> </a>
+            <?php
+   
+                        
+              $verificar_usuario = mysqli_query($conexion, "SELECT * FROM favoritos WHERE id_usuario = '$id_usuario' and id_lugar = '$id_lugar' " );
             
-                                      <?php
-                                      }
-            
-                                      ?> 
+              if(mysqli_num_rows($verificar_usuario)> 0){
+
+              ?>
+               <button class="btn btn-warning " type="button"  > Agregado </button>
+
+              <?php             
+              }else{
+                ?>
+
+            <a href="php\guardar\g-favoritos.php?id=<?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?>">  <button class="btn btn-warning " type="button"  > Agregar </button> </a>
+
+              <?php
+              }
+
+              ?>                
+          
+                                                              
+                                        
             
 
 
@@ -499,7 +494,7 @@ while($rows = $resultado-> fetch_assoc()){
 
 
                     
-        <?php 
+ <?php 
 }
 
 ?>
@@ -674,7 +669,91 @@ while($rows = $resultado-> fetch_assoc()){
               </h3>
             </div>
             <div class="box-body">
-              <div id="world-map" style="height: 250px; width: 100%;"></div>
+              <div id="map" style="height: 250px; width: 100%;  color: black;  "></div>
+           
+           
+              <script>
+      var customLabel = {
+        restaurante: {
+          label: 'R'
+        },
+        Hotel: {
+          label: 'H'
+        },
+        AireLibre: {
+          label: 'A'
+        },
+        Salud: {
+          label: 'S'
+        },
+        Estetica: {
+          label: 'E'
+        }
+      };
+
+        function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(9.984274,-84.248456),
+          zoom: 7
+        });
+        var infoWindow = new google.maps.InfoWindow;
+
+          // Change this depending on the name of your PHP or XML file
+          downloadUrl('respuesta.php', function(data) {
+            var xml = data.responseXML;
+            var markers = xml.documentElement.getElementsByTagName('marker');
+            Array.prototype.forEach.call(markers, function(markerElem) {
+              var nombre = markerElem.getAttribute('nombre');
+              var direccion = markerElem.getAttribute('direccion');
+              var categoria = markerElem.getAttribute('categoria');
+              var point = new google.maps.LatLng(
+                  parseFloat(markerElem.getAttribute('latitud')),
+                  parseFloat(markerElem.getAttribute('longitud')));
+
+              var infowincontent = document.createElement('div');
+              var strong = document.createElement('strong');
+              strong.textContent = nombre
+              infowincontent.appendChild(strong);
+              infowincontent.appendChild(document.createElement('br'));
+
+              var text = document.createElement('text');
+              text.textContent = direccion
+              infowincontent.appendChild(text);
+              var icon = customLabel[categoria] || {};
+              var marker = new google.maps.Marker({
+                map: map,
+                position: point,
+                label: icon.label
+              });
+              marker.addListener('click', function() {
+                infoWindow.setContent(infowincontent);
+                infoWindow.open(map, marker);
+              });
+            });
+          });
+        }
+
+
+
+      function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
+
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request, request.status);
+          }
+        };
+
+        request.open('GET', url, true);
+        request.send(null);
+      }
+
+      function doNothing() {}
+    </script>
+
             </div><!-- /.box-body-->
             <div class="box-footer no-border">
               <div class="row">
@@ -714,7 +793,7 @@ while($rows = $resultado-> fetch_assoc()){
                     <div class="footer-desc text-center">
                         <img src="http://superdevresources.com/images/super-dev-resources-logo.png" width="82" height="48" alt="">
                         <p>
-                            <a href="/" rel="home" title="Super Dev Resources">Super Dev Resources</a> is a popular blog for finding<br>awesome free app and web development resources. <a href="/about/">Learn More</a>
+                            <a href="/" rel="home" title="Super Dev Resources">Nuestro propocito es crear una red en donde todos podamos compartir<br>las mejores aventuras con tu mejor amigo <a href="sobre.php">Leer mas</a>
                         </p>
                     </div>
                 </div>
@@ -753,22 +832,14 @@ while($rows = $resultado-> fetch_assoc()){
                   </div>
                 </div>
                     </ul>
-               
-
-
-                <nav class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-                    <div class="input-group input-group-md">
-                      <input type="text" class="form-control" placeholder="Email Address">
-                      <span class="input-group-addon">Subscribe</span>
-                    </div>
-                </nav>
+    
             </div> <!--/.row--> 
         </div> <!--/.container--> 
     </div> <!--/.footer-->
     
     <div class="footer-bottom">
         <div class="container">
-            <div class="pull-left"> Copyright © <a href="">Rizwan Akram</a>.  All right reserved.</div>
+               <div class="pull-left"> Copyright © <a href="">Mypetscr</a>.  todos los derechos reservados.</div>
         
         </div>
     </div> <!--/.footer-bottom--> 
@@ -796,7 +867,7 @@ while($rows = $resultado-> fetch_assoc()){
       
       
       
-      <!-- Home tab content -->
+      <!-- Inicio tab content -->
       <div class="tab-pane" id="control-sidebar-home-tab">
         <h3 class="control-sidebar-heading">Recent Activity</h3>
         <ul class="control-sidebar-menu">
@@ -816,7 +887,7 @@ while($rows = $resultado-> fetch_assoc()){
               <i class="menu-icon fa fa-user bg-yellow"></i>
 
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                <h4 class="control-sidebar-subheading">Frodo Updated His Perfil</h4>
 
                 <p>New phone +1(800)555-1234</p>
               </div>
@@ -982,6 +1053,10 @@ while($rows = $resultado-> fetch_assoc()){
  
 </div>
 <!-- ./wrapper -->
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKgL99QGHGEibwnzxvvO80HeE94NN3-NM&callback=initMap">
+    </script>
+
 <script type="text/javascript" src="js/buscar.js"></script>
 
 

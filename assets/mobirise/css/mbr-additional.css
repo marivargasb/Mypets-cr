@@ -1,0 +1,30 @@
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:400,300,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+
+
+
+
+
+#header1-1 P {
+  text-align: center;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 13px;
+  color: #ffffff;
+}
+#header1-1 H1 {
+  text-align: center;
+  color: #ffffff;
+}
+#header1-1 .btn {
+  font-family: 'Open Sans', sans-serif;
+}
+#footer1-2 P {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+#content5-6 P {
+  font-family: 'Open Sans', sans-serif;
+}
+#content5-6 .mbr-section-title {
+  font-family: 'Open Sans', sans-serif;
+}

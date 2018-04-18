@@ -30,12 +30,15 @@
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="plugins/iCheck/all.css">
     <link rel="stylesheet" href="bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
-   
-    <link rel="stylesheet" href="css/estilos-footer.css">
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilos-footer.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> </script>
+
+
     
    
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--  <link rel="stylesheet" href="css/estilos.css">
+      HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -58,26 +61,21 @@
   
   session_start();
 if(isset($_SESSION['id'])){
-  
-    $id = $_SESSION['id'];
+  header("Location: mypetscr.php");
 
-   
-  
-  }else{
-  
-    header("Location: registro.php");
   
   }
 
-
   
-  $query = "SELECT * FROM usuarios WHERE id_usuarios = '$id' ";
-  $resultado = $conexion->query($query);
-  if($row = $resultado-> fetch_assoc()){
-  ?>
-       
+  echo "<script>\n";
+  echo "var_id ='" .$id. "'\n";
+  echo "</script>\n";
+ 
+{
+ ?>
+
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="index.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>C</b>R</span>
           <!-- logo for regular state and mobile devices -->
@@ -86,63 +84,10 @@ if(isset($_SESSION['id'])){
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
-          <!-- Sidebar toggle button para eliminar el boton
-          <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-            <span class="sr-only">Toggle navigation</span>
-          </a>
-        
-        -->
-        
-
           <div class="navbar-custom-menu ">
             <ul class="nav navbar-nav">
-              
-    
-    
-    
-          
-          <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-envelope-o"></i>
-                <span class="label label-success">2</span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">You have 2 messages</li>
-                <li>
-                  <!-- inner menu: contains the actual data -->
-                  <ul class="menu">
-                    <li><!-- start message -->
-                      <a href="#">
-                        <div class="pull-left">
-                          <img src="https://static1.squarespace.com/static/56d3a5a486db43f4f777b2f6/t/56d3d82e8259b53968383d8e/1456724022495/27ef868543abf9c4e16439c1aeb8f0bd.jpg" class="img-circle" alt="User Image">
-                        </div>
-                        <h4>
-                          Andrea
-                          <small><i class="fa fa-clock-o"></i> fecha</small>
-                        </h4>
-                        <p>es un gran lugar</p>
-                      </a>
-                    </li>
-                    <!-- end message -->
-                    <li>
-                      <a href="#">
-                        <div class="pull-left">
-                          <img src="https://static1.squarespace.com/static/56d3a5a486db43f4f777b2f6/t/56d3d82e8259b53968383d8e/1456724022495/27ef868543abf9c4e16439c1aeb8f0bd.jpg" class="img-circle" alt="User Image">
-                        </div>
-                        <h4>
-                          Marta
-                          <small><i class="fa fa-clock-o"></i> fecha</small>
-                        </h4>
-                        <p>ese lugar no me gusta</p>
-                      </a>
-                    </li>
-                  
-                  </ul>
-                </li>
-                <li class="footer"><a href="form_lugar.php"> Mensajes</a></li>
-              </ul>
-            </li>
+  
+
 
           <!-- Notifications: style can be found in dropdown.less -->
           <li class="dropdown messages-menu">
@@ -157,34 +102,23 @@ if(isset($_SESSION['id'])){
                   <ul class="menu">
                
                  
-                  <?php
-                  
-                  
-                  $id_usuario = $row['id_usuarios'];
-                  $query = "SELECT  lg.id_lugar , lg.nombre, lg.foto , lg.descripcion, lg.categoria , lg.provincia , fv.id_lugar, fv.id_usuario , fv.id_favoritos
-                  FROM lugar lg, favoritos fv WHERE lg.id_lugar = fv.id_lugar and fv.id_usuario = $id_usuario  ORDER BY  id_usuario  DESC LIMIT 5";
-                  
-                                    $resultado = $conexion->query($query);
-                                 while($rows = $resultado-> fetch_assoc()){
-                  
-                                   ?>
+     
                   
                   
                                     <li><!-- start message -->
                                       <a href="lugar.php">
                                         <div class="pull-left">
-                                          <img src="data:imagine/jpg;base64,<?php echo base64_encode($rows['foto']);  ?>" class="img-circle" alt="User Image">
+                                          <img src="https://pbs.twimg.com/media/CnsHg1nWYAEFutg.png" class="img-circle" alt="User Image">
                                         </div>
                                         <h4>
-                                        <?php  echo $rows['nombre']; ?> 
-                                          <small><i class="fa fa-clock-o"></i> fecha</small>
+                                    no disponible sin incio de seccion
+                                         
                                         </h4>
-                                        <p>  <?php  echo $rows['categoria']; ?> , <?php  echo $rows['provincia']; ?></p>
+ 
                                       </a>
                                     </li>
                                     <!-- end message -->
                   
-                                    <?php } ?>
                  
                                   
                     <!-- end message -->
@@ -192,35 +126,30 @@ if(isset($_SESSION['id'])){
       
                   </ul>
                 </li>
-                <li class="footer"><a href="#"> Mensajes</a></li>
+                <li class="footer"><a href="#"> favoritos</a></li>
               </ul>
             </li>
    <!-- User Account: style can be found in dropdown.less -->
    <li class="dropdown user user-menu">
    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-     <img src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?>" class="user-image" alt="User Image">
-     <span class="hidden-xs"><?php echo $row['nombre'] ?></span>
+     <img src="https://pbs.twimg.com/media/CnsHg1nWYAEFutg.png" class="user-image" alt="User Image">
+     <span class="hidden-xs">Registrar</span>
    </a>
    <ul class="dropdown-menu">
      <!-- User image -->
      <li class="user-header">
-       <img src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?>" class="img-circle" alt="User Image">
+       <img src="https://pbs.twimg.com/media/CnsHg1nWYAEFutg.png" class="img-circle" alt="User Image">
 
        <p>
-       <?php echo $row['nombre'] ?> 
-         <small><?php echo $row['nacimiento'] ?></small>
+     registrar
+    
        </p>
      </li>
      <!-- Menu Body -->
      <li class="user-body">
        <div class="row">
-         <div class="col-xs-4 text-center">
-           <a href="favoritos.php">Favoritos</a>
-         </div>
-         <div class="col-xs-4 text-center">
-           <a href="form_lugar.php">Editar</a>
-         </div>
-         <div class="col-xs-4 text-center">
+  
+         <div class="col-xs-12 text-center">
            <a href="sobre.php">Sobre Nosotros</a>
          </div>
        </div>
@@ -228,11 +157,9 @@ if(isset($_SESSION['id'])){
      </li>
      <!-- Menu Footer-->
      <li class="user-footer">
-       <div class="pull-left">
-         <a href="perfil3.php" class="btn btn-default btn-flat">Profile</a>
-       </div>
-       <div class="pull-right">
-         <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat">Sign out</a>
+   
+       <div class="col-xs-12 text-center">
+         <a href="registro.php" class="btn btn-info btn-flat">Sign </a>
        </div>
      </li>
    </ul>
@@ -244,18 +171,17 @@ if(isset($_SESSION['id'])){
 </ul>
 </div>
 </nav>
+
+
+
+
+<?php
+
+  }
+?>
+
 </header>
 <!-- Left side column. contains the logo and sidebar -->
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -295,9 +221,10 @@ if(isset($_SESSION['id'])){
                         <h1 class="mypetscr">Mypets <label class="label label-danger" >CR</label></h1>
                         <br>
                         <br>
-                            <div id="custom-search-input">
+                            <div  id="custom-search-input">
                                 <div class="input-group col-md-12">
-                                    <input id="busqueda" type="text" class="form-control input-lg" placeholder="Buscar" />
+                                   
+                                    <input id="busquedas"  type="text" class="form-control input-lg" placeholder="Buscar" />
                                     <span class="input-group-btn">
                                         <button class="btn btn-info btn-lg" type="button">
                                             <i class="glyphicon glyphicon-search"></i>
@@ -309,6 +236,8 @@ if(isset($_SESSION['id'])){
                   </div>
                 </div>
 
+
+             
             </center>
                 </br>
               </br>
@@ -349,9 +278,17 @@ if(isset($_SESSION['id'])){
 
          <div class="container">
             <div class="row">
+
+
+            <div id="datos">
+
+
+            
+
             <?php
 
-$query = "SELECT * FROM `lugar` WHERE  categoria IN ( 'Hotel', 'Aire Libre', 'Restaurante','Salud', 'Estetica') AND provincia IN ('Cartago', 'Nicoya', 'Alajuela', 'Guanacaste','Puntarenas', 'San Jose' , 'Limon');";
+
+$query = "SELECT * FROM `lugar` ";
 $resultado = $conexion->query($query);
 while($rows = $resultado-> fetch_assoc()){
 
@@ -369,7 +306,7 @@ while($rows = $resultado-> fetch_assoc()){
                               <div class="caption">
                                 <div class="row">
                                   <div class="col-md-12 col-xs-12">
-                                  <a href="lugar.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?> "  > 
+                                  <a href="lugar2.php?id_lugar= <?php echo $rows['id_lugar']  ?> "  > 
                                     <h3 class="text-center" >    </span>   <label class="badge  fa fa-paw  label-info"> <?php echo $rows['nombre']; ?> </label></h3>
                                     </a>
                                   </div>
@@ -385,68 +322,9 @@ while($rows = $resultado-> fetch_assoc()){
                                   <center>
                                   <div class="col-md-12">
 
-                                  <?php 
-                                  
-            
-                                        $id_lugar = $rows['id_lugar'];
-                                        $id_usuario = $row['id_usuarios'];
-            
-            
-            
-            
-                                        $verificar_me = mysqli_query($conexion, "SELECT * FROM `me-gusta` WHERE id_lugar = '$id_lugar' and id_usuario = '$id_usuario' " );
-                                        
-                                         if(mysqli_num_rows($verificar_me)> 0){
-                                          if ($ro = $verificar_me->fetch_row()) {
-                                            $id_gusta = ($ro[0]);
-                                            $likes = ($ro[3]);
-                                       
-                                             }
-            
-                                          ?>
-                                           
-            
-                                           <button class="btn btn-danger  submit-button " value="1" name ="boton"  onclick="window.location.href = 'php/borrar/b-like.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?>'"  > quitar like <span class="badge "> <?php echo $rows['me-gusta']  ?>  </span> </button>
-                                            
-                                        
-                                           <?php             
-                                           }else{
-                                            ?>
-                                        
-                                           
-            
-                                        <button class="btn btn-success  submit-button " value="1" name ="boton"  onclick="window.location.href = 'php/obtener/me-gusta.php?id= <?php echo $row['id_usuarios'] ?> &id_lugar= <?php echo $rows['id_lugar']  ?> '"  > me gusta <span class="badge "> <?php echo $rows['me-gusta']  ?>  </span> </button>
-                                            
-                                             <?php
-                                             }
-                                        
-                                             ?> 
-                                      
-            
-            
-            
-            
-                                           <?php
-                                        
-                                      $verificar_usuario = mysqli_query($conexion, "SELECT * FROM favoritos WHERE id_usuario = '$id_usuario' and id_lugar = '$id_lugar' " );
-            
-                                      if(mysqli_num_rows($verificar_usuario)> 0){
-            
-                                      ?>
-                                       <button class="btn btn-warning " type="button"  > Agregado </button>
-            
-                                      <?php             
-                                      }else{
-                                        ?>
-            
-                                    <a href="php\guardar\g-favoritos.php?id= <?php echo $row['id_usuarios']  ?> &id_lugar= <?php echo $rows['id_lugar']  ?>">  <button class="btn btn-warning " type="button"  > Agregar </button> </a>
-            
-                                      <?php
-                                      }
-            
-                                      ?> 
-            
-
+ 
+                                    <button class="btn btn-success  submit-button " value="1" name ="boton"  > me gusta <span class="badge "> <?php echo $rows['me-gusta']  ?>  </span> </button>
+                         
 
                                 </div>
                               </center>
@@ -460,11 +338,19 @@ while($rows = $resultado-> fetch_assoc()){
 
 
                     
-        <?php 
+ <?php 
 }
 
 ?>
-                 
+
+
+
+            </div>
+            
+
+
+
+
 
 
 
@@ -502,7 +388,7 @@ while($rows = $resultado-> fetch_assoc()){
                            
                   
                        
-                          <div class="col-sm-12 col-md-12     caja">
+                          <div class="col-sm-12 col-md-12 text-center  caja">
                          
                        
                             <li class="dropdown align-text-bottom "><a href="#" class="dropdown-toggle li" data-toggle="dropdown" role="button">Categoria
@@ -534,14 +420,14 @@ while($rows = $resultado-> fetch_assoc()){
                          
                          
                           <div class="col-sm-12 col-md-12   ">
-                            </br>
+                        
                             <hr>
-                            </br>
+                         
                           </div>
 
                         <div class="col-sm-12 col-md-12    caja1">
                       
-                            <li class="dropdown  align-text-bottom "  href="#" ><a href="#" class="dropdown-toggle li1" data-toggle="dropdown" role="button"> Provincia
+                            <li class="dropdown "  href="#" ><a href="#" class="dropdown-toggle li1" data-toggle="dropdown" role="button"> Provincia
                         <span class="caret"></span>
                         
                         </a>
@@ -583,8 +469,15 @@ while($rows = $resultado-> fetch_assoc()){
 
                                    
                                       </ul>
+
+                                      
                                   
                                   <div class="col-sm-12 col-md-12">
+                                  <div class="checkbox">
+                                    <label class="te" >
+                                       <input type="checkbox" class="flat-red" checked  name="populares" value="mejores">Mas Populares</label>
+                                      </div>
+
                                    
                                   </br>
                                       <button type="submit" class="btn btn-warning btn-lg">BUSCAR</button>
@@ -596,8 +489,8 @@ while($rows = $resultado-> fetch_assoc()){
                               
      
       <!-- /.box-body -->
-      <div class="box-footer">
-        Many more skins available. <a href="http://fronteed.com/iCheck/">Documentation</a>
+      <div class="box-footer text-center">
+     VER TODOS <a href="mypetscr.php">IR</a>
       </div>
     </div>
 
@@ -620,7 +513,91 @@ while($rows = $resultado-> fetch_assoc()){
               </h3>
             </div>
             <div class="box-body">
-              <div id="world-map" style="height: 250px; width: 100%;"></div>
+              <div id="map" style="height: 250px; width: 100%;  color: black;  "></div>
+           
+           
+              <script>
+      var customLabel = {
+        restaurante: {
+          label: 'R'
+        },
+        Hotel: {
+          label: 'H'
+        },
+        AireLibre: {
+          label: 'A'
+        },
+        Salud: {
+          label: 'S'
+        },
+        Estetica: {
+          label: 'E'
+        }
+      };
+
+        function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(9.984274,-84.248456),
+          zoom: 7
+        });
+        var infoWindow = new google.maps.InfoWindow;
+
+          // Change this depending on the name of your PHP or XML file
+          downloadUrl('respuesta.php', function(data) {
+            var xml = data.responseXML;
+            var markers = xml.documentElement.getElementsByTagName('marker');
+            Array.prototype.forEach.call(markers, function(markerElem) {
+              var nombre = markerElem.getAttribute('nombre');
+              var direccion = markerElem.getAttribute('direccion');
+              var categoria = markerElem.getAttribute('categoria');
+              var point = new google.maps.LatLng(
+                  parseFloat(markerElem.getAttribute('latitud')),
+                  parseFloat(markerElem.getAttribute('longitud')));
+
+              var infowincontent = document.createElement('div');
+              var strong = document.createElement('strong');
+              strong.textContent = nombre
+              infowincontent.appendChild(strong);
+              infowincontent.appendChild(document.createElement('br'));
+
+              var text = document.createElement('text');
+              text.textContent = direccion
+              infowincontent.appendChild(text);
+              var icon = customLabel[categoria] || {};
+              var marker = new google.maps.Marker({
+                map: map,
+                position: point,
+                label: icon.label
+              });
+              marker.addListener('click', function() {
+                infoWindow.setContent(infowincontent);
+                infoWindow.open(map, marker);
+              });
+            });
+          });
+        }
+
+
+
+      function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
+
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request, request.status);
+          }
+        };
+
+        request.open('GET', url, true);
+        request.send(null);
+      }
+
+      function doNothing() {}
+    </script>
+
             </div><!-- /.box-body-->
             <div class="box-footer no-border">
               <div class="row">
@@ -648,8 +625,7 @@ while($rows = $resultado-> fetch_assoc()){
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <?php }
-  ?>
+
 
  <!--Footer-->
  <footer class="footer1">
@@ -660,7 +636,7 @@ while($rows = $resultado-> fetch_assoc()){
                     <div class="footer-desc text-center">
                         <img src="http://superdevresources.com/images/super-dev-resources-logo.png" width="82" height="48" alt="">
                         <p>
-                            <a href="/" rel="home" title="Super Dev Resources">Super Dev Resources</a> is a popular blog for finding<br>awesome free app and web development resources. <a href="/about/">Learn More</a>
+                            <a href="/" rel="home" title="Super Dev Resources">Nuestro propocito es crear una red en donde todos podamos compartir<br>las mejores aventuras con tu mejor amigo <a href="sobre.php">Leer mas</a>
                         </p>
                     </div>
                 </div>
@@ -701,20 +677,13 @@ while($rows = $resultado-> fetch_assoc()){
                     </ul>
                
 
-
-                <nav class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-                    <div class="input-group input-group-md">
-                      <input type="text" class="form-control" placeholder="Email Address">
-                      <span class="input-group-addon">Subscribe</span>
-                    </div>
-                </nav>
             </div> <!--/.row--> 
         </div> <!--/.container--> 
     </div> <!--/.footer-->
     
     <div class="footer-bottom">
         <div class="container">
-            <div class="pull-left"> Copyright © <a href="">Rizwan Akram</a>.  All right reserved.</div>
+               <div class="pull-left"> Copyright © <a href="">Mypetscr</a>.  todos los derechos reservados.</div>
         
         </div>
     </div> <!--/.footer-bottom--> 
@@ -742,7 +711,7 @@ while($rows = $resultado-> fetch_assoc()){
       
       
       
-      <!-- Home tab content -->
+      <!-- Inicio tab content -->
       <div class="tab-pane" id="control-sidebar-home-tab">
         <h3 class="control-sidebar-heading">Recent Activity</h3>
         <ul class="control-sidebar-menu">
@@ -762,7 +731,7 @@ while($rows = $resultado-> fetch_assoc()){
               <i class="menu-icon fa fa-user bg-yellow"></i>
 
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                <h4 class="control-sidebar-subheading">Frodo Updated His Perfil</h4>
 
                 <p>New phone +1(800)555-1234</p>
               </div>
@@ -928,8 +897,14 @@ while($rows = $resultado-> fetch_assoc()){
  
 </div>
 <!-- ./wrapper -->
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKgL99QGHGEibwnzxvvO80HeE94NN3-NM&callback=initMap">
+    </script>
 
-<!-- jQuery 3 -->
+<script type="text/javascript" src="js/buscar.js"></script>
+
+
+<!-- jQuery 3  <script src="js/jquery-3.2.1.min.js"></script> -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
@@ -966,11 +941,12 @@ while($rows = $resultado-> fetch_assoc()){
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-<script src="js/main.js"></script>
-<script src="js/jquery-3.2.1.min"></script>
 
-<!-- iCheck 1.0.1 -->
-<script src="plugins/iCheck/icheck.min.js"></script>
+
+
+
+<!-- iCheck 1.0.1  -->
+<script  src="plugins/iCheck/icheck.min.js"></script>
 
 
 <script>

@@ -56,7 +56,6 @@ if(isset($_SESSION['id'])){
 
   $id = $_SESSION['id'];
 
- 
 
 }else{
 
@@ -122,7 +121,7 @@ FROM lugar lg, comentario cm , usuarios us WHERE us.id_usuarios = cm.id_usuario 
     ?></span>
 </a>
 <ul class="dropdown-menu">
-  <li class="header">You have  messages</li>
+  <li class="header">tienes mensajes</li>
   <li>
     <!-- inner menu: contains the actual data -->
     <ul class="menu">
@@ -243,10 +242,10 @@ FROM lugar lg, favoritos fv WHERE lg.id_lugar = fv.id_lugar and fv.id_usuario = 
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="perfil3.php" class="btn btn-default btn-flat">Profile</a>
+                    <a href="perfil3.php" class="btn btn-default btn-flat">Perfil</a>
                   </div>
                   <div class="pull-right">
-                    <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat">Sign out</a>
+                    <a href="php\obtener\cerrar.php" class="btn btn-default btn-flat"> Cerrar Sesion</a>
                   </div>
                 </li>
               </ul>
@@ -291,9 +290,9 @@ FROM lugar lg, favoritos fv WHERE lg.id_lugar = fv.id_lugar and fv.id_usuario = 
         <ul class="sidebar-menu" data-widget="tree">
         
      
-          <li class="header">LABELS</li>
+          <li class="header">MENU</li>
           <li><a href="mypetscr.php"><i class="fa fa-share text-red"></i> <span>Regresar</span></a></li>
-          <li><a href="inicio.php"><i class="fa fa-home text-yellow"></i> <span>inicio</span></a></li>
+          <li><a href="index.php"><i class="fa fa-home text-yellow"></i> <span>index</span></a></li>
           <li><a href="favoritos.php"><i class="fa fa-th  text-aqua"></i> <span>Favoritos</span></a></li>
           <li><a href="perfil3.php"><i class="fa fa-cog text-red"></i> <span>Editar Perfil</span></a></li>
           <li><a href="sobre.php"><i class="fa fa-file text-yellow"></i> <span>Sobre Notros</span></a></li>
@@ -358,7 +357,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
           <small> mis datos</small>
         </h1>
         <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
           <li><a href="#">perfil</a></li>
     
         </ol>
@@ -408,7 +407,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
 
                   </div>
                   <div class="widget-user-image">
-                    <img class="img-circle " src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?>" alt="User Avatar">
+                    <img class="img-circle " src="data:imagine/jpg;base64,<?php echo base64_encode($row['foto']);  ?> " alt="User Avatar">
                   </div>
                   <div class="box-footer">
                     <div class="row">
@@ -636,7 +635,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
                  <div class="footer-desc text-center">
                      <img src="http://superdevresources.com/images/super-dev-resources-logo.png" width="82" height="48" alt="">
                      <p>
-                         <a href="/" rel="home" title="Super Dev Resources">Super Dev Resources</a> is a popular blog for finding<br>awesome free app and web development resources. <a href="/about/">Learn More</a>
+                         <a href="/" rel="home" title="Super Dev Resources">Nuestro propocito es crear una red en donde todos podamos compartir<br>las mejores aventuras con tu mejor amigo <a href="sobre.php">Leer mas</a>
                      </p>
                  </div>
              </div>
@@ -678,19 +677,13 @@ if(mysqli_num_rows($verificar_usuario)> 0){
             
 
 
-             <nav class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-                 <div class="input-group input-group-md">
-                   <input type="text" class="form-control" placeholder="Email Address">
-                   <span class="input-group-addon">Subscribe</span>
-                 </div>
-             </nav>
          </div> <!--/.row--> 
      </div> <!--/.container--> 
  </div> <!--/.footer-->
  
  <div class="footer-bottom">
      <div class="container">
-         <div class="pull-left"> Copyright © <a href="">Rizwan Akram</a>.  All right reserved.</div>
+            <div class="pull-left"> Copyright © <a href="">Mypetscr</a>.  todos los derechos reservados.</div>
      
      </div>
  </div> <!--/.footer-bottom--> 
@@ -707,7 +700,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
-      <!-- Home tab content -->
+      <!-- Inicio tab content -->
       <div class="tab-pane" id="control-sidebar-home-tab">
         <h3 class="control-sidebar-heading">Recent Activity</h3>
         <ul class="control-sidebar-menu">
@@ -727,7 +720,7 @@ if(mysqli_num_rows($verificar_usuario)> 0){
               <i class="menu-icon fa fa-user bg-yellow"></i>
 
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                <h4 class="control-sidebar-subheading">Frodo Updated His Perfil</h4>
 
                 <p>New phone +1(800)555-1234</p>
               </div>

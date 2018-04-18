@@ -1,9 +1,18 @@
 <?php
 
 
-include 'C:\xampp\htdocs\Mypetscr\php\cn.php';
+$conexion = mysqli_connect("localhost","root","","mypetscr");
+
+if(!$conexion){
+
+    echo '<script> alert(" ERROR DE CONEXION"); 
+    window.history.go(-1);
+    </script>';
+}else{
 
 
+
+}
 
    
 $verificar_usuario = mysqli_query($conexion, " SELECT * FROM `datos` WHERE id_datos = '1' " );

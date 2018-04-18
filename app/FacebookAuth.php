@@ -61,12 +61,13 @@ public function  login(){
              }else{
                  
                 //obtenemos los datos del usuario
-            
+               
                 $nombre= $usuario['first_name'] ;
                 $apellido= $usuario['last_name'] ;
                  $correo =  $usuario['email'] ;
                  $contrasena=  '1234';
-                 $foto =  $usuario['picture'] ;
+                 $foto =  addslashes(file_get_contents($usuario['picture']['tmp_name'])); 
+                 ;
 
                 //insertar en la base de datos
                 $insertar = "INSERT INTO usuarios(id_usuarios, nombre, apellido, correo, contrasena,  foto, estado, tipo) VALUES  ('$id_facebook','$nombre','$apellido', '$correo' ,'$contrasena',' $foto ' ,'A','facebook' )";

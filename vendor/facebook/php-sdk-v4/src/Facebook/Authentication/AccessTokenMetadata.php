@@ -289,7 +289,7 @@ class AccessTokenMetadata
      *
      * @return string|null
      */
-    public function getProfileId()
+    public function getPerfilId()
     {
         return $this->getField('profile_id');
     }
